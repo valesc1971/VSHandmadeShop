@@ -1,0 +1,68 @@
+{%extends 'base_layout.html'%}{%block content%}
+{% load static %}
+
+
+<body>
+
+	<header>
+		<h1>Mis trabajos</h1>
+	</header>
+	<div id="descripcion">
+		<p>
+Cada uno de mis trabajos esta realizado en forma personalizada usando las mejores materias primas
+			</p>
+	</div>
+
+	<div id="imagen_productos">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+
+			</ol>
+			<div class="carousel-inner">
+				<div id="foto1"class="carousel-item active">
+					<img class="d-block w-100" src="{% static 'aplicacion1/images/crochet1.jpg' %}" class="img-fluid" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Camino de mesa<h5>
+        <p></p>
+      </div>
+    </div>
+
+    
+    <div id="foto2"class="carousel-item">
+      <img class="d-block w-100" src="{% static 'aplicacion1/images/bordado1.jpg' %}" class="img-fluid" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Bordado a punto de cruz<h5>
+          <p></p>
+        
+      </div>
+    </div>
+    <div id="foto3"class="carousel-item">
+      <img class="d-block w-100" src="{% static 'aplicacion1/images/tejido2.jpg' %}"class="img-fluid"  alt="third slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Piecera tejida a palillos<h5>
+          <p></p>
+        
+      </div>
+
+
+    </div>
+    
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+</div>
+</div>
+
+  </body>
+
+
+{%endblock content%}

@@ -1,0 +1,353 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1{
+  text-align: center;
+  color: rgb(146, 139, 120);
+  font-size: xx-large;
+}
+
+header{
+  text-align: center;
+  color: rgba(30, 39, 46,1.0);
+  margin:2%;
+}
+header h1{
+text-align: center;
+text-align: center;
+color: rgb(146, 139, 120);
+font-size: xx-large;
+}
+
+.bg-black_1{
+  background-color:  rgb(148, 145, 138);
+}
+
+nav{
+  margin: 10px;
+}
+
+#barranav ul li{
+  margin: 10px;
+}
+#form-contact{
+  color: #fff;
+  text-align: center;
+}
+
+#form-contact:hover {
+  color:  rgb(148, 145, 138);
+  background-color:  #fff;
+}
+
+
+
+.galeria{
+  font-family: 'Roboto', sans-serif;
+  margin-bottom:-5%;
+
+}
+.galeria h1{
+    text-align: center;
+    margin: 20px 0 15px 0;
+    font-weight: 300;
+}
+
+
+
+.contenedor-imagenes{
+  display: flex;
+  width: 75%;
+  margin-left:10%;
+  margin-right:10%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius: 3px;
+    
+}
+
+.contenedor-imagenes .imagen{
+    width: 32%;
+    position: relative;
+    height: cover;
+
+    border-radius: 5px;
+}
+
+.imagen img{
+  width: 100%;
+  height: 80%;
+  border: 3px solid #beb6a0;
+  border-radius: 5px;
+}
+
+section { 
+  background-color:  rgb(148, 145, 138);
+  margin: 10px;
+  color:#fff ;
+  }
+
+section h2{
+  padding-top: 10px;
+  text-align: center;
+  color:#fff ;
+  background-color:  rgb(148, 145, 138);
+  font-size: x-large;
+  
+}
+
+section p{
+  line-height: 150%;
+  padding-left:10px;
+  padding-right:10px;
+  text-align:justify;
+  background-color:  rgb(148, 145, 138);
+  
+}
+
+
+#descripcion{
+
+margin-bottom: 1%;
+  padding: 3px; 
+  margin-left: 20%;
+  margin-right:20%;
+  text-align: justify;
+  border: 3px solid #beb6a0;
+  text-align: center;
+  font-size: medium;
+  color: rgb(146, 139, 120);
+  
+  
+  }
+  
+  #tit1{
+    background-color: rgba(30, 39, 46,1.0);
+    margin-bottom: 10px;
+    margin-top:10px;
+    padding: 10px; 
+    margin:10px; 
+  
+  }
+  
+  #carouselExampleIndicators{
+    margin-left:35%;
+  }
+  
+  
+  .carousel-item {
+    border: 10px solid rgb(148, 145, 138);
+  
+  
+  }
+  
+  
+  .carousel-inner img {
+    width: 10%;
+    height: auto;
+  
+  
+  }
+  
+  .carousel {
+    width:25%;
+    margin-left:25%;
+  }
+  
+  .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+  }
+  
+  form-1 {
+    width: 100%;
+  }
+  .mb-3 {
+    width: 40%;
+    margin-left: 30%;
+    border-radius: 5%;
+    border-color: #fff;
+  }
+  
+  
+.form-label {
+  padding-right: 3%;
+  
+}
+
+.form-control {
+  padding-right: 3%;
+  
+}
+
+#btn-1 {
+  width: 25%;
+  margin-left: 38%;
+  background-color:  rgb(148, 145, 138);
+  color: #fff;
+  border-color: #fff;
+}
+
+
+
+#form-message {
+  font-family: 'Roboto', sans-serif; 
+}
+
+#mensaje {
+  background-color:  rgb(148, 145, 138);
+}
+
+#form-contact:hover {
+  color:  rgb(148, 145, 138);
+  background-color:  #fff;
+}
+::placeholder {
+  color: rgb(146, 139, 120);
+  font-size: 90%;
+}
+
+#form_usuario {
+
+  width:40%;
+  margin-left: 40%;
+  margin-right: 30%;
+  padding-right: 30%;
+  font-size: small;
+
+}
+
+#form_usuario p {
+
+margin-right: 33%;
+padding: 3%;
+width: 100%;
+color:rgb(146, 139, 120);
+font-size: medium;
+
+}
+
+#form_usuario p input {
+
+  background-color: rgb(224, 212, 199);
+  margin: 5%;
+  border:rgb(92, 86, 76)
+  
+  }
+  
+  #form_usuario p label {
+
+    margin: 0%;
+    padding: 3%;
+    font-size: medium;
+    
+    }
+#tabla_usuarios {
+
+padding: 1%;
+margin-right: 5%;
+margin-left: 5%;
+color:rgb(112, 98, 61);
+background-color:  rgb(221, 204, 181);
+
+}
+
+#btn-2 {
+  width: 10%;
+  margin-left: 42%;
+  background-color:  rgb(148, 145, 138);
+  color: #fff;
+  border-color: #fff;
+}
+
+#logo {
+
+width: 10%;
+margin-left:45%;
+margin-right:45%;
+}
+
+#bienvenida{
+
+  background-color:  rgb(189, 178, 185);
+  color:#fff;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+  font-size: medium;
+}
+
+#nombre {
+  font-size: x-large;
+}
+
+
+#form_register {
+
+  width:100%;
+  margin-left: 10%;
+  margin-right: 30%;
+  margin-top:3% ;
+  font-size: small;
+
+}
+
+#form_register li{
+
+  width:100%;
+  margin-left: 10%;
+  margin-right: 30%;
+  margin-bottom: 1%;
+  font-size: medium;
+
+}
+
+#form_register li input {
+
+  background-color: rgb(224, 212, 199);
+  border:rgb(92, 86, 76);
+  margin-left: 0%;
+  
+  }
+
+  ::marker {
+    color: rgb(146, 139, 120);
+    font-size: 90%;
+  }
+  #form_register li label {
+    font-size: medium;
+    color: rgb(146, 139, 120);
+    
+    }
+
+#form_register span ul li{
+ margin-bottom: 0%;
+ font-size: x-small;
+}
+
+
+span{
+  font-size: x-small;
+  color: rgb(146, 139, 120);
+}
+
+
+
+
+
+footer {
+  background-color: rgb(148, 145, 138);
+  color:#fff;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10%;
+  padding-bottom: 1%;
+  margin:10px;
+
+
+  font-size: small;
+
+}

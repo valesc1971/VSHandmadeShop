@@ -1,0 +1,16 @@
+{%extends 'base_layout.html'%}
+
+{%block content%}
+<header>
+    <h1>Registro de Usuario</h1> 
+  </header>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div id="form_register"> 
+        {{form.as_ul}}
+
+    </div>
+    <button id="btn-2" class="btn btn-outline-dark" type="submit">Registrarse</button>
+</form>
+
+{%endblock content%}

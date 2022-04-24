@@ -1,0 +1,42 @@
+{%extends 'base_layout.html'%}{%block content%}
+
+
+<body >
+<div id="tabla_usuarios">
+<header>
+  <h1>Usuarios</h1> 
+</header>
+
+    <table id="example" class="stripe" style="width:75%; margin-left: 23%"> 
+      <thead>
+     
+        <tr>
+          <th>RUT</th>
+          <th>Nombre</th>
+          <th>Apellido</th>    
+          <th>Edad</th>
+          <th>E-mail</th>
+        </tr>
+      
+      </thead>
+      {% for cli in data %}
+      <tbody>
+        <tr>
+          <td>{{cli.rut}}</td>
+          <td>{{cli.nombre}}</td>
+          <td>{{cli.apellido}}</td>
+          <td>{{cli.edad}}</td>
+          <td>{{cli.email}}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+      <tfoot>
+    
+      </tfoot> 
+    </table>
+</div>
+</body>
+
+</html>
+{%endblock content%}  
+

@@ -1,0 +1,36 @@
+{%extends 'base_layout.html'%}
+
+{%block content%}
+{% load static %}
+
+  <link href="{% static 'aplicacion1/style.css' %}" rel="stylesheet" type="text/css" />
+
+<body>
+
+  <main>
+	  <aside>
+
+      <h1>handmade shop & more</h1>
+        <div class="linea"></div>
+          <div class="contenedor-imagenes">
+              <div class="imagen">
+                  <img src="{% static 'aplicacion1/images/embroidery2.png'%}" class="img-fluid" alt="embroidery2.png">
+              </div>
+              <div class="imagen">
+                  <img src="{% static 'aplicacion1/images/crochet.jpg'%}" class="img-fluid" alt="crochet.jpg">
+              </div>
+              <div class="imagen">
+                  <img src="{% static 'aplicacion1/images/knitting.jpg'%}" class="img-fluid" alt="knitting.jpg">
+              </div>
+          </div>
+        </div>
+	  </aside>
+    <section>
+      <h2>Mi historia</h2>
+      <p>Soy mama, ingeniero de profesión y artista de corazón. Mi amor por las manualidades viene de parte de toda mi familia: papas, abuelas y tías que desde muy niña – más o menos desde los 6 años- me traspasaron el amor y la satisfacción que significa fabricar cosas con nuestras propias manos. He aprendido un poco de todo, desde tejido y bordado, que son mi pasión, pasando por telar, pintura y llegando hasta un poco de carpintería. Agradezco infinitamente ser parte de este legado y espero con mi corazón, que mis hijas hereden esta pasión. </p>
+    </section>
+  </main>
+
+</body>
+{%endblock content%}
+

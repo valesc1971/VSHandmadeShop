@@ -1,0 +1,18 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+<div id="titulo">
+    <h1 id="titulo1"> Ingreso </h1>
+</div>
+
+<form action="/login/" method="POST">
+    {% csrf_token %}
+    <div id="form_usuario"> 
+        {{form.as_p}}
+        </div>
+
+    <button id="btn-2" class="btn btn-outline-dark">Ingresar</button>
+
+</form>
+
+{% endblock %}
