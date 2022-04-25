@@ -1,8 +1,10 @@
 # Proyecto Individual - VS - Handmae Shop & More
 
-Este proyecto consiste en el desarrollo de un sitio web para un negocio independiente tanto para su presentacion como para la interaccion con clientes (compras y mensajes / comentario)
+Este proyecto consiste en el desarrollo de un sitio web para un negocio independiente
 
-Se espera poder implementar un sistema de compras
+El objetivo de este sitio es presentar a la empresa y sus productos / servicios, que permita la interaccion con clientes (compras y mensajes / comentario) y la administracion de este (datos usuarios)
+
+En el futuro, se espera implementar un sistema de compras, restricciones de acceso para usuarios (clientes / administradores) y la diferenciacion de sitios de compra y de administracion.
 
 ## Tabla de Contenidos
 
@@ -78,6 +80,13 @@ El sitio presenta tambien 3 restricciones: Las opciones "Revisar Mensajes", "Ing
 
 ![image](https://user-images.githubusercontent.com/99301347/165001674-0dd6aba9-3803-42a3-b02e-8bec3f47352b.png)
 
+Se implemento la personalizacion de la pagina de error 404, sin embargo no es posible activarla considerando que su implementacion significa llevar un ambiente de produccion donde los archivos estaticos no son reconocidos, por lo que los archivs de estilo e imagenes se desactivan. 
+
+Para visualizarla , se debe hacer los siguientes cambios en el archivo setting.py
+
+![image](https://user-images.githubusercontent.com/99301347/165001933-c798ab09-278a-4643-85cb-915ce48acefc.png)
+
+![image](https://user-images.githubusercontent.com/99301347/165001916-d75238cd-4bba-4933-aa28-9a56a64d0b7a.png)
 
 
 <a name="Visualizacion"></a>
