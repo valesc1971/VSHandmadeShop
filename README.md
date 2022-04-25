@@ -30,7 +30,7 @@ Este proyecto fue creado usando:
 ## Instalacion
 Para descargar este proyecto, se debe clonar desde este repositorio remoto a un repositorio local.
 
-$git clone https://github.com/valesc1971/ABPro7.git
+$git clone https://github.com/valesc1971/ProyectoIndividual_Ejercicio5.git
 
 Se debe tambien correr dentro de un entorno virtual de Python (virtualenv) (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
