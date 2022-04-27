@@ -33,20 +33,27 @@
 				<a class="nav-link" href="/mostrar_mensaje" id="form-contact">Revisar Mensajes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Ingresar Datos Usuario</a>
-			</li>	        
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'usuarios' %}" id="form-contact">Lista Datos Usuarios</a>
+				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Registro - Clientes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="/register" id="form-contact">Registrarse</a>
+				<a class="nav-link" href="/login_externo" id="form-contact">Ingresar - Clientes</a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="/salir_externo" id="form-contact">Salir-Cliente</a>
+			</li>
+            
+            <li class="nav-item">
+				<a class="nav-link" href="{% url 'usuarios' %}" id="form-contact">Lista Datos Clientes</a>
+			</li>
+            <li class="nav-item">
+				<a class="nav-link" href="/register" id="form-contact">Registrarse - Admin</a>
 			</li>
 
             <li class="nav-item">
-				<a class="nav-link" href="/login" id="form-contact">Ingresar</a>
+				<a class="nav-link" href="/login" id="form-contact">Ingresar - Admin</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="/salir" id="form-contact">Salir</a>
+				<a class="nav-link" href="/salir" id="form-contact">Salir-Admin</a>
 			</li>
 	</div>
 </nav>

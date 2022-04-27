@@ -6,9 +6,12 @@ from django.contrib.auth import authenticate, login as auth_login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Usuario, Mensaje
-from .forms import UsuarioForm, LoginForm, MensajeForm
+from aplicacion1.backend import MyBackend
 
+from .models import Usuario, Mensaje
+from .forms import UsuarioForm, LoginForm, MensajeForm, LoginExtForm
+
+MyBackend=MyBackend()
 
 # Create your views here.
 
@@ -27,7 +30,7 @@ def usuarios(request):
 def ejemplo(request):
     return render (request,'aplicacion1/ejemplo.html')
 
-@login_required
+
 def  formulario_usuario(request):
 
     form = UsuarioForm()
@@ -42,12 +45,35 @@ def  formulario_usuario(request):
             usuario.apellido=form.cleaned_data['apellido']
             usuario.edad=form.cleaned_data['edad']
             usuario.email=form.cleaned_data['email']
+            usuario.clave=form.cleaned_data['clave']
             usuario.save()
 
-        return redirect('/usuarios')
+        return redirect('bienvenido_externo')
     else:
         form = UsuarioForm()
         return render (request, 'aplicacion1/formulario_usuario.html',{"form":form})
+
+def login_externo(request):
+    if request.method == "POST":
+        form = LoginExtForm(data = request.POST)
+        if form.is_valid():
+            nombre=form.cleaned_data["nombre"]
+            clave=form.cleaned_data["clave"]
+            user=MyBackend.authenticate(request, username=nombre, password=clave)
+            if user is not None:
+                print(Usuario.nombre())
+                auth_login(request, user)
+            return redirect ('bienvenido_externo')
+    else:
+        form= LoginExtForm()
+        return render (request, 'aplicacion1/login_externo.html', {"form":form})
+
+def bienvenido_externo (request):
+    return render (request, 'aplicacion1/bienvenido_externo.html')
+
+def salir_externo (request):
+    logout (request)
+    return redirect ("/login_externo")
 
 def login(request):
     if request.method == "POST":
