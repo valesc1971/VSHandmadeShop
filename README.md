@@ -1,4 +1,4 @@
-# Proyecto Individual - VS - Handmae Shop & More
+# Proyecto Individual - VS - Handmade Shop & More
 
 Este proyecto consiste en el desarrollo de un sitio web para un negocio independiente
 
