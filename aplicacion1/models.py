@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -17,3 +18,8 @@ class Mensaje(models.Model):
     apellido=models.CharField(max_length=100, null=False)
     email=models.EmailField()
     mensaje=models.CharField(max_length=500, null=False)
+
+class Cliente(models.Model):
+    nombre=models.CharField(max_length=50, null=False)
+    clave=models.CharField(max_length=30)
+    

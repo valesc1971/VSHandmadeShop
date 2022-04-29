@@ -16,7 +16,9 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-black_1">
-	<div class="container-fluid justify-content-center" id="barranav">
+	
+    <div class="container-fluid justify-content-center" id="barranav">
+        
 
 		<ul class="navbar-nav mb-2 mb-lg-0">
 
@@ -33,17 +35,17 @@
 				<a class="nav-link" href="/mostrar_mensaje" id="form-contact">Revisar Mensajes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Registro - Clientes</a>
+				<a class="nav-link" href="{% url 'formulario_cliente' %}" id="form-contact">Registro - Clientes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="/login_externo" id="form-contact">Ingresar - Clientes</a>
+				<a class="nav-link" href="/login_cliente" id="form-contact">Ingresar - Clientes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="/salir_externo" id="form-contact">Salir-Cliente</a>
+				<a class="nav-link" href="/salir_cliente" id="form-contact">Salir-Cliente</a>
 			</li>
             
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'usuarios' %}" id="form-contact">Lista Datos Clientes</a>
+				<a class="nav-link" href="{% url 'clientes' %}" id="form-contact">Lista Datos Clientes</a>
 			</li>
             <li class="nav-item">
 				<a class="nav-link" href="/register" id="form-contact">Registrarse - Admin</a>
@@ -55,12 +57,33 @@
             <li class="nav-item">
 				<a class="nav-link" href="/salir" id="form-contact">Salir-Admin</a>
 			</li>
+        
+        <div id="nombre_login">
+           <p>{{ request.user.username }} </p>
+           {% if request.user.is_superuser %}
+                <p> superuser </p>
+           {% elif request.user.is_staff %}
+                <p> staff </p>
+            {% elif request.user.is_active %}
+                <p> active </p>
+           {% endif %}
+        </div>
 	</div>
+
 </nav>
 
 <div class="logo">
     <img id="logo" src="{% static 'aplicacion1/images/logo.png'%}" class="img-fluid" alt="logo.png">
 </div>
+
+{% if messages %}
+{%for message in messages%}
+<div>
+{{message}}
+</div>
+{% endfor %}
+{% endif %}
+
 
 {%block content%}
 

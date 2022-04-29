@@ -127,3 +127,7 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,"static"), "templates"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKEND = ['aplicacion1.backend.MyBackend', 'django.contrib.auth.backends.ModelBackend']
+
+LOGIN_REDIRECT_URL = 'index'
+
+

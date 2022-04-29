@@ -1,0 +1,10 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+<div id="titulo">
+    <h1 id="titulo1"> Te has deslogueado </h1>
+</div>
+
+<a type="button" href="{% url 'login' %}">Ingresar nuevamente</a>
+
+{% endblock %}

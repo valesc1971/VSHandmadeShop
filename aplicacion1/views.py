@@ -1,3 +1,4 @@
+from cgi import print_directory
 from mailbox import NoSuchMailboxError
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -6,14 +7,16 @@ from django.contrib.auth import authenticate, login as auth_login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
-from aplicacion1.backend import MyBackend
+from .backend import MyBackend, MyBackend2
 
-from .models import Usuario, Mensaje
-from .forms import UsuarioForm, LoginForm, MensajeForm, LoginExtForm
+from .models import Usuario, Mensaje, Cliente
+from .forms import UsuarioForm, LoginForm, MensajeForm, LoginExtForm, UserRegisterForm, ClienteForm
 
 MyBackend=MyBackend()
+MyBackend2=MyBackend2()
 
 # Create your views here.
+
 
 def index(request):
     return render (request,'aplicacion1/index.html')
@@ -61,9 +64,8 @@ def login_externo(request):
             clave=form.cleaned_data["clave"]
             user=MyBackend.authenticate(request, username=nombre, password=clave)
             if user is not None:
-                print(Usuario.nombre())
                 auth_login(request, user)
-            return redirect ('bienvenido_externo')
+            return render (request, 'bienvenido_externo', {'user':user})
     else:
         form= LoginExtForm()
         return render (request, 'aplicacion1/login_externo.html', {"form":form})
@@ -84,10 +86,14 @@ def login(request):
             user=authenticate(request, username=usuario, password=clave)
             if user is not None:
                 auth_login(request, user)
-            return redirect ('bienvenido')
-    else:
-        form= LoginForm()
-        return render (request, 'aplicacion1/login.html', {"form":form})
+                messages.info(request, f"Has ingresado como {usuario}.")
+                return redirect ('bienvenido')
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form= LoginForm()
+    return render (request, 'aplicacion1/login.html', {"form":form})
 
 @login_required (login_url="/login")
 def bienvenido (request):
@@ -95,18 +101,20 @@ def bienvenido (request):
 
 def salir (request):
     logout (request)
+    messages.info(request, "You have successfully logged out.") 
     return redirect ("/login")
 
 def register(request):
     if request.method == "POST":
-        form=UserCreationForm(request.POST)
+        form=UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
             messages.success(request, f'Usuario {username} creado exitosamente.')
+            return redirect ('login')
     
     else:
-        form=UserCreationForm()
+        form=UserRegisterForm()
 
     context = {'form':form}
 
@@ -141,3 +149,53 @@ def mostrar_mensaje (request):
 
 def page_not_found_view(request, exception):
     return render(request, '404.html', status=404)
+
+
+def registro_cliente(request):
+    cliente=Cliente.objects.all()
+    return render (request,'aplicacion1/registro_cliente.html',{"data":cliente})
+
+def  formulario_cliente(request):
+
+    form = ClienteForm()
+    
+    if request.method == "POST":
+        form=ClienteForm(data=request.POST)
+
+        if form.is_valid():
+            cliente=Cliente()
+            cliente.nombre=form.cleaned_data['nombre']
+            cliente.clave=form.cleaned_data['clave']
+            cliente.save()
+
+        return redirect('bienvenido_externo')
+    else:
+        form = ClienteForm()
+        return render (request, 'aplicacion1/formulario_cliente.html',{"form":form})
+
+def login_cliente(request):
+    if request.method == "POST":
+        form = LoginExtForm(data = request.POST)
+        if form.is_valid():
+            nombre=form.cleaned_data["nombre"]
+            clave=form.cleaned_data["clave"]
+            user=MyBackend2.authenticate(request, username=nombre, password=clave)
+            if user is not None:
+
+                auth_login(request, user)
+            return render (request, 'bienvenido_cliente', {'user':user})
+    else:
+        form= LoginExtForm()
+        return render (request, 'aplicacion1/login_cliente.html', {"form":form})
+
+def bienvenido_cliente (request):
+    return render (request, 'aplicacion1/bienvenido_cliente.html')
+
+def salir_cliente (request):
+    logout (request)
+    return redirect ("/login_cliente")
+
+
+def clientes(request):
+    usuario=Cliente.objects.all()
+    return render (request,'aplicacion1/clientes.html',{"data":usuario})
