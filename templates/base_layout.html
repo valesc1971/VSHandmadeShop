@@ -61,11 +61,11 @@
         <div id="nombre_login">
            <p>{{ request.user.username }} </p>
            {% if request.user.is_superuser %}
-                <p> superuser </p>
+                <h5> superuser </h5>
            {% elif request.user.is_staff %}
-                <p> staff </p>
+                <h5> staff </h5>
             {% elif request.user.is_active %}
-                <p> active </p>
+                <h5> active </h5>
            {% endif %}
         </div>
 	</div>
