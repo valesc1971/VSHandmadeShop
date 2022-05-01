@@ -149,61 +149,6 @@ def mostrar_mensaje (request):  #muestra mensajes recibidos
 def page_not_found_view(request, exception): #mensaje de error
     return render(request, '404.html', status=404)
 
-<<<<<<< HEAD
 def productos(request):
     producto=Producto.objects.all()
     return render (request,'aplicacion1/productos.html',{"data":producto})
-=======
-
-""" registro / ingreso/ clientes externos..para desarrollo porsterior
-def registro_cliente(request):
-    cliente=Cliente.objects.all()
-    return render (request,'aplicacion1/registro_cliente.html',{"data":cliente})
-
-def  formulario_cliente(request):
-
-    form = ClienteForm()
-    
-    if request.method == "POST":
-        form=ClienteForm(data=request.POST)
-
-        if form.is_valid():
-            cliente=Cliente()
-            cliente.nombre=form.cleaned_data['nombre']
-            cliente.clave=form.cleaned_data['clave']
-            cliente.save()
-
-        return redirect('bienvenido_externo')
-    else:
-        form = ClienteForm()
-        return render (request, 'aplicacion1/formulario_cliente.html',{"form":form})
-
-def login_cliente(request):
-    if request.method == "POST":
-        form = LoginExtForm(data = request.POST)
-        if form.is_valid():
-            nombre=form.cleaned_data["nombre"]
-            clave=form.cleaned_data["clave"]
-            user=MyBackend2.authenticate(request, username=nombre, password=clave)
-            if user is not None:
-
-                auth_login(request, user)
-            return render (request, 'bienvenido_cliente', {'user':user})
-    else:
-        form= LoginExtForm()
-        return render (request, 'aplicacion1/login_cliente.html', {"form":form})
-
-def bienvenido_cliente (request):
-    return render (request, 'aplicacion1/bienvenido_cliente.html')
-
-def salir_cliente (request):
-    logout (request)
-    return redirect ("/login_cliente")
-
-
-def clientes(request):
-    usuario=Cliente.objects.all()
-    return render (request,'aplicacion1/clientes.html',{"data":usuario})
-
-"""
->>>>>>> 41a720e110324483b7bfcea52a0d3f4c92f7c074
