@@ -19,7 +19,11 @@ class Mensaje(models.Model):
     email=models.EmailField()
     mensaje=models.CharField(max_length=500, null=False)
 
-class Cliente(models.Model):
+
+
+
+class Producto(models.Model):
     nombre=models.CharField(max_length=50, null=False)
-    clave=models.CharField(max_length=30)
+    descripcion=models.CharField(max_length=300, null=False)
+    precio=models.IntegerField()
     

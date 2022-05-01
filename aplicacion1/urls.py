@@ -17,10 +17,7 @@ urlpatterns = [
     path('login_externo/', views.login_externo, name='login_externo'),
     path('bienvenido_externo/', views.bienvenido_externo, name='bienvenido_externo'),
     path('salir_externo/', views.salir_externo, name='salir_externo'),
-    path('registro_cliente/', views.registro_cliente, name='registro_clientes'),
-    path('formulario_cliente/', views.formulario_cliente, name='formulario_cliente'),
-    path('clientes/', views.clientes, name='clientes'),
-    path('salir_cliente/', views.salir_cliente, name='salir_cliente'),
+    
 
 
 

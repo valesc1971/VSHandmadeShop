@@ -22,9 +22,6 @@ from aplicacion1 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('aplicacion1.urls')),
-    #path('login/', LoginView.as_view(template_name='aplicacion1/login.html'), name='login'),
-    #path('logout/', LogoutView.as_view(template_name='aplicacion1/logout.html'), name='logout'),
-    path('login_cliente/', views.login_cliente, name='login_cliente'),
 ]
 
 handler404 = "aplicacion1.views.page_not_found_view"

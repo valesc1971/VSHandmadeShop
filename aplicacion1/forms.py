@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from .models import Cliente, Mensaje, Usuario
+from .models import Mensaje, Usuario
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -34,6 +34,6 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 
-class ClienteForm(forms.Form):
-    nombre=forms.CharField(widget=forms.TextInput)
-    clave=forms.CharField(widget=forms.PasswordInput)
+
+
+
