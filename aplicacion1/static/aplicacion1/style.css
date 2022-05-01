@@ -10,6 +10,11 @@ h1{
   color: rgb(146, 139, 120);
   font-size: xx-large;
 }
+#nombre_login h5{
+
+  color: red;
+
+}
 
 header{
   text-align: center;

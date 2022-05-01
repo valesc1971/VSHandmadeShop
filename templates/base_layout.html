@@ -35,17 +35,11 @@
 				<a class="nav-link" href="/mostrar_mensaje" id="form-contact">Revisar Mensajes</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'formulario_cliente' %}" id="form-contact">Registro - Clientes</a>
-			</li>
-            <li class="nav-item">
-				<a class="nav-link" href="/login_cliente" id="form-contact">Ingresar - Clientes</a>
-			</li>
-            <li class="nav-item">
-				<a class="nav-link" href="/salir_cliente" id="form-contact">Salir-Cliente</a>
+				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Registro - Clientes</a>
 			</li>
             
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'clientes' %}" id="form-contact">Lista Datos Clientes</a>
+				<a class="nav-link" href="{% url 'usuarios' %}" id="form-contact">Lista Datos Clientes</a>
 			</li>
             <li class="nav-item">
 				<a class="nav-link" href="/register" id="form-contact">Registrarse - Admin</a>
@@ -61,11 +55,11 @@
         <div id="nombre_login">
            <p>{{ request.user.username }} </p>
            {% if request.user.is_superuser %}
-                <p> superuser </p>
+                <h5> superuser </h5>
            {% elif request.user.is_staff %}
-                <p> staff </p>
+                <h5> staff </h5>
             {% elif request.user.is_active %}
-                <p> active </p>
+                <h5> active </h5>
            {% endif %}
         </div>
 	</div>
