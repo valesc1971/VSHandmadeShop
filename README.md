@@ -72,7 +72,9 @@ El desarrollo del codigo de backend se hizo usando la framework django en conjun
 
 Existe un superusuario creado y se agrego la opcion de registro de nuevos usuarios a traves del sitio con la opcion "Registrarse" en la barra de navegacion.
 
-El sitio tambien permite el ingreso de usuarios ya registrados aa traves de la opcion "Ingresar". La opcion "Salir" permite al usuario desconectarse.
+El sitio tambien permite el ingreso de usuarios ya registrados aa traves de la opcion "Ingresar". Una avez que el usuario ingresa, se despliega un mensaje de bienvenida personalizado, y el nombre aparece en la esquina superiror derecha con el tipo de usuario registrado.
+
+La opcion "Salir" permite al usuario desconectarse.
 
 Se crearon tambien 2 modelos (Usuarios y Mensajes) las que almacenas datos de usuarios y mensajes enviados. Estas clase se pueden tambien accesarse desde la barra de navegacion en la opcion "Ingresar Datos Usuario" y "Contacto". Estos ingresos se pueden visualizar desde el sitio en "Lista Datos Usuarios" y en "Revisar Mensajes"
 
