@@ -1,0 +1,40 @@
+{%extends 'base_layout.html'%}{%block content%}
+{% load static %}
+
+
+<body>
+    <div id="tabla_usuarios">
+        <header>
+          <h1>Productos</h1>
+        </header>
+           
+                <table id="example" class="stripe"> 
+                  <thead>
+                 
+                    <tr>
+                      <th>nombre</th>
+                      <th>descripcion</th>
+                      <th>precio</th>    
+                    </tr>
+                  
+                  </thead>
+                  <tbody>
+                    {% for prod in data %}
+                    <tr>
+                      <td>{{prod.nombre}}</td>
+                      <td>{{prod.descripcion}}</td>
+                      <td>{{prod.precio}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                
+                  </tfoot> 
+                </table>
+
+    </div>
+</body>
+  
+  
+
+{%endblock content%}

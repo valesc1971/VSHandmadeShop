@@ -1,0 +1,31 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+<div id="titulo">
+  <h1 id="titulo1"> Editar </h1>
+</div>
+
+{% load crispy_forms_tags %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div id="mensaje">
+        <div class="row">
+            <div class="col-6">
+              {{ form.nombre|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.apellido|as_crispy_field }}
+            </div>
+          </div>
+          {{ form.email|as_crispy_field }}
+          {{ form.mensaje|as_crispy_field }}
+
+    
+        </div>
+        <button id="btn-2" class="btn btn-outline-dark">Editar</button>
+
+    </form>
+
+
+{%endblock content%}

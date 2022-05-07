@@ -1,14 +1,14 @@
 from django import forms
 from django.db.models import fields
-from .models import Mensaje, Usuario
+from .models import Mensaje, Usuario, Producto
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
 class UsuarioForm(forms.ModelForm):
-    clave=forms.CharField(widget=forms.PasswordInput)
+    receive_newsletter = forms.BooleanField(widget=forms.CheckboxInput, required=False)
     class Meta:
         model = Usuario
-        fields =('rut', 'nombre', 'apellido','edad', 'email', 'clave')
+        fields =('rut', 'nombre', 'apellido','edad', 'email')
 
 class LoginForm(forms.Form):
     nombre=forms.CharField(widget=forms.TextInput)
@@ -18,11 +18,7 @@ class LoginForm(forms.Form):
 class MensajeForm(forms.ModelForm):
     class Meta:
         model = Mensaje
-        fields =('nombre', 'apellido', 'email', 'mensaje') 
-
-class LoginExtForm(forms.Form):
-    nombre=forms.CharField(widget=forms.TextInput)
-    clave=forms.CharField(widget=forms.PasswordInput)
+        fields =('id','nombre', 'apellido', 'email', 'mensaje') 
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -34,6 +30,11 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 
+class ProductosForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields =('nombre', 'descripcion', 'precio') 
 
-
+class EmailForm(forms.Form):
+    email=forms.EmailField()
 

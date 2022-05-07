@@ -2,14 +2,37 @@
 
 {%block content%}
 <header>
-    <h1>Registro de Usuario Admin</h1> 
-  </header>
-<form action="" method="POST">
+    <h1>Registro de Usuario</h1> 
+</header>
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-9">
+    <form action="/register/" method="POST">
     {% csrf_token %}
     <div id="form_register"> 
-        {{form.as_ul}}
+        <div class="row">
+            <div class="col-6">
+              {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.password1|as_crispy_field }}
+              </div>
+              <div class="col-6">
+                {{ form.password2|as_crispy_field }}
+              </div>
+
+        </div>
 
     </div>
+    </div>
+</div>
+</div>
     <button id="btn-2" class="btn btn-outline-dark" type="submit">Registrarse</button>
 </form>
 

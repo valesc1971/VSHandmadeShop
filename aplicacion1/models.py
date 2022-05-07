@@ -9,9 +9,7 @@ class Usuario(models.Model):
     apellido=models.CharField(max_length=100, null=False)
     edad=models.IntegerField()
     email=models.EmailField()
-    clave=models.CharField(max_length=30)
-
-
+    receive_newsletter = models.BooleanField( blank=True)
 
 class Mensaje(models.Model):
     nombre=models.CharField(max_length=50, null=False)
@@ -19,11 +17,10 @@ class Mensaje(models.Model):
     email=models.EmailField()
     mensaje=models.CharField(max_length=500, null=False)
 
-
-
-
 class Producto(models.Model):
     nombre=models.CharField(max_length=50, null=False)
     descripcion=models.CharField(max_length=300, null=False)
     precio=models.IntegerField()
+    
+
     

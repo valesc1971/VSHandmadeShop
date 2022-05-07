@@ -4,14 +4,44 @@
 <div id="titulo">
     <h1 id="titulo1"> Registro Clientes </h1>
 </div>
+{% load crispy_forms_tags %}
 
+<div class="container">
+    <div class="row">
+      <div class="col-9">
 
-    <form action="/formulario_usuario/" method="POST">
+    <form action="/formulario_usuario/" method="POST" onsubmit="return(validacion());">
         {% csrf_token %}
-        <div id="form_usuario"> 
-
-            {{form.as_p}}
+        <div id="form_register"> 
+            <div class="row">
+                <div class="col-6">
+                  {{ form.rut|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                  {{ form.email|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.nombre|as_crispy_field }}
+                  </div>
+                  <div class="col-6">
+                    {{ form.apellido|as_crispy_field }}
+                  </div>
+                  <div class="col-6">
+                    {{ form.edad|as_crispy_field }}
+                  </div>
+                  <div class="col-6">
+                    {{ form.receive_newsletter|as_crispy_field }}
+                  </div>
+    
+            </div>
+    
         </div>
+        </div>
+    </div>
+    </div>
+
+
+</div>
 
         <button id="btn-2" class="btn btn-outline-dark">registrar</button>
 

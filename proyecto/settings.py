@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'fancybox',
     'aplicacion1',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,8 +81,12 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'proyecto',
+        'USER': 'postgres',
+        'PASSWORD': 'valesc2240',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -119,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,"static"), "templates"]
+#STATICFILES_DIRS=[os.path.join(BASE_DIR,"static"), "templates"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -130,4 +137,4 @@ AUTHENTICATION_BACKEND = ['aplicacion1.backend.MyBackend', 'django.contrib.auth.
 
 LOGIN_REDIRECT_URL = 'index'
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

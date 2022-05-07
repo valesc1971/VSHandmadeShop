@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .backend import MyBackend
 
 from .models import Usuario, Mensaje, Producto
-from .forms import UsuarioForm, LoginForm, MensajeForm, LoginExtForm, UserRegisterForm
+from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm
 
 MyBackend=MyBackend()
 
@@ -47,34 +47,14 @@ def  formulario_usuario(request):  # registro de usuario
             usuario.apellido=form.cleaned_data['apellido']
             usuario.edad=form.cleaned_data['edad']
             usuario.email=form.cleaned_data['email']
-            usuario.clave=form.cleaned_data['clave']
+            usuario.receive_newsletter=form.cleaned_data['receive_newsletter']
             usuario.save()
-
-        return redirect('bienvenido_externo')
+            messages.info(request, f"{usuario.nombre}, Gracias por registrarte con nosotros .")
+        return redirect('ejemplo')
     else:
         form = UsuarioForm()
         return render (request, 'aplicacion1/formulario_usuario.html',{"form":form})
 
-def login_externo(request):         #login usuario para desarrollar mas adelante
-    if request.method == "POST":
-        form = LoginExtForm(data = request.POST)
-        if form.is_valid():
-            nombre=form.cleaned_data["nombre"]
-            clave=form.cleaned_data["clave"]
-            user=MyBackend.authenticate(request, username=nombre, password=clave)
-            if user is not None:
-                auth_login(request, user)
-            return render (request, 'bienvenido_externo', {'user':user})
-    else:
-        form= LoginExtForm()
-        return render (request, 'aplicacion1/login_externo.html', {"form":form})
-
-def bienvenido_externo (request): # no usuado actualmente
-    return render (request, 'aplicacion1/bienvenido_externo.html')
-
-def salir_externo (request): #no usado actualmente
-    logout (request)
-    return redirect ("/login_externo")
 
 def login(request):   #ingreso de usuario admin
     if request.method == "POST":
@@ -138,17 +118,34 @@ def contacto(request):  #formulario contacto para envia mensajes q se almacenan 
             form = MensajeForm()
             return render (request, 'aplicacion1/contacto.html',{"form":form})
 
-
-
-@login_required
 def mostrar_mensaje (request):  #muestra mensajes recibidos
     mensaje=Mensaje.objects.all()
     return render (request,'aplicacion1/mensajes.html',{"data":mensaje})
 
+def editar_mensaje(request, id):  #formulario editar mensaje
+        mensaje=Mensaje.objects.get(pk=id)
+        form = MensajeForm(instance=mensaje)
+        if request.method == "POST":
+            form=MensajeForm(data=request.POST, instance=mensaje)
+            form.save()
+            return redirect('/mostrar_mensaje')
+        else:
+            return render (request, 'aplicacion1/editar_mensaje.html',{"form":form})
+
+def eliminar_mensaje(request, id):
+        mensaje=Mensaje.objects.get(pk=id)
+        mensaje.delete()
+        return redirect('/mensaje_mail')
+
+def mensaje_mail(request,email):
+    email_list = Mensaje.objects.filter(email=email)
+    return render(request, 'aplicacion1/mensaje_mail.html', {"correo":email_list})
+  
 
 def page_not_found_view(request, exception): #mensaje de error
     return render(request, '404.html', status=404)
 
-def productos(request):
+def productos_lista(request):
     producto=Producto.objects.all()
-    return render (request,'aplicacion1/productos.html',{"data":producto})
+    return render (request,'aplicacion1/productos_lista.html',{"data":producto})
+

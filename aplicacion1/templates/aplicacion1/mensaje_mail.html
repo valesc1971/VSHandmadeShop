@@ -20,21 +20,22 @@
         </tr>
       
       </thead>
+     
+      
       <tbody>
-        {% for men in data %}
+        {% for men in correo %}
         <tr>
           <td>{{men.id}}</td>
           <td>{{men.nombre}}</td>
           <td>{{men.apellido}}</td>
           <td>{{men.email}}</td>
           <td>{{men.mensaje}}</td>
-          <td><a href="/eliminar_mensaje/{{men.id}}">eliminar</a> | <a href="/editar_mensaje/{{men.id}}">editar</a> | <a href="/mensaje_mail/{{men.email}}">filtrar for email</a></td>
+          <td><a href="/eliminar_mensaje/{{men.id}}">eliminar</a> | <a href="/editar_mensaje/{{men.id}}">editar</a></td>
         </tr>
         {% endfor %} 
       </tbody>
 
-     
-   <tfoot>
+      <tfoot>
     
       </tfoot> 
     </table>

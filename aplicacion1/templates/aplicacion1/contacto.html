@@ -1,36 +1,51 @@
 {%extends 'base_layout.html'%}
+
 {%block content%}
 <header>
   <h1>Contacto</h1> 
 </header>
 
-<form action= "/contacto/" method= "POST" class="form-1" name="miFormu" onsubmit="return(validacion());">  
-  {% csrf_token %}
-
-
-  
-  <div class="mb-3">
-    <label for="name" class="form-label">Nombre</label>
-    <input name="nombre" type="text" class="form-control" id="name" placeholder="Nombre" >
+{% load crispy_forms_tags %}
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <form action= "/contacto/" method= "POST" class="form-1" name="miFormu" onsubmit="return(validacion());">  
+        {% csrf_token %}
+        
+        <div id="mensaje">
+          <div class="row">
+              <div class="col-6">
+                {{ form.nombre|as_crispy_field }}
+              </div>
+              <div class="col-6">
+                {{ form.apellido|as_crispy_field }}
+              </div>
+            </div>
+            {{ form.email|as_crispy_field }}
+            {{ form.mensaje|as_crispy_field }}
+      
+      
+          </div>
+      
+      
+        <button id="btn-1" type="submit" class="btn btn-outline-dark">Enviar Mensaje</button>
+      </form>
+    </div>
+    <div class="col">
+      <div id ='info_contacto'> 
+        direccion/telefono
+        <form action="/mensaje_mail/{{ request.user.email }}">
+          <button id="btn-3" class="btn btn-outline-dark" type="submit"/>Revisar Mensajes</button>
+          <p>{{ request.user.email }} </p>
+      </form> 
+        </div>
+    </div>
+    <div class="col">
+    </div>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label for="apellido" class="form-label">Apellido</label>
-    <input name="apellido" type="text" class="form-control" id="apellido" placeholder="Apellido">
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Correo</label>
-    <input name="email" type="text" class="form-control" id="email" placeholder="email">
-  </div>
-    
-  <div class="mb-3">
-    <label for="message" class="form-label">Mensaje</label>
-    <textarea name="mensaje" class="form-control" id="message" placeholder="Mensaje" rows="3" ></textarea>
-  </div>
-
-
-  <button id="btn-1" type="submit" class="btn btn-outline-dark">Enviar Mensaje</button>
-</form>
+</div>
 
 
   {%endblock content%}
+

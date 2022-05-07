@@ -7,7 +7,7 @@
   <h1>Usuarios</h1> 
 </header>
 
-    <table id="example" class="stripe" style="width:75%; margin-left: 23%"> 
+    <table id="example" class="stripe"> 
       <thead>
      
         <tr>
@@ -16,22 +16,22 @@
           <th>Apellido</th>    
           <th>Edad</th>
           <th>E-mail</th>
-          <th>Clave</th>
+          <th>Contacto</th>
         </tr>
       
       </thead>
-      {% for cli in data %}
       <tbody>
+        {% for cli in data %}
         <tr>
           <td>{{cli.rut}}</td>
           <td>{{cli.nombre}}</td>
           <td>{{cli.apellido}}</td>
           <td>{{cli.edad}}</td>
           <td>{{cli.email}}</td>
-          <td>{{cli.clave}}</td>
+          <td>{{cli.receive_newsletter}}</td>
         </tr>
+        {% endfor %}
       </tbody>
-      {% endfor %}
       <tfoot>
     
       </tfoot> 

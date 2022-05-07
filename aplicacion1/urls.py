@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from  .import views
 
 
@@ -14,8 +14,11 @@ urlpatterns = [
     path('salir/', views.salir, name='salir'),
     path('register/', views.register, name='register'),
     path('mostrar_mensaje/', views.mostrar_mensaje, name='mostrar_mensaje'),
-    path('login_externo/', views.login_externo, name='login_externo'),
-    path('bienvenido_externo/', views.bienvenido_externo, name='bienvenido_externo'),
-    path('salir_externo/', views.salir_externo, name='salir_externo'),
-   
-]
+    path('productos_lista/', views.productos_lista, name='productos_lista'),
+    path('eliminar_mensaje/<int:id>/', views.eliminar_mensaje, name='eliminar_mensaje'),
+    path('editar_mensaje/<int:id>/', views.editar_mensaje, name='editar_mensaje'),
+    path('mensaje_mail/<str:email>/', views.mensaje_mail, name='mensaje_mail'),
+
+
+    
+    ]
