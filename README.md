@@ -120,13 +120,20 @@ Para visualizarla , se debe hacer los siguientes cambios en el archivo setting.p
 
 <a name="Visualizacion"></a>
 ## Visualizacion del sitio web
-![image](https://user-images.githubusercontent.com/99301347/165000180-bbbe6f55-f3a2-4e01-9eee-b6c50368d2d9.png)
-![image](https://user-images.githubusercontent.com/99301347/165000228-a2d3820c-69e4-419c-82a9-418d65a6d6d1.png)
-![image](https://user-images.githubusercontent.com/99301347/165000236-cc322c14-04d9-40cc-9d94-8115223f627a.png)
-![image](https://user-images.githubusercontent.com/99301347/165000295-555da441-df8f-48f3-a05f-fb8c051b58eb.png)
-![image](https://user-images.githubusercontent.com/99301347/165000299-54e89761-8724-418f-b1d1-abf5328af826.png)
-![image](https://user-images.githubusercontent.com/99301347/165000307-02276d4d-c45c-4600-9ce6-8b94bba606eb.png)
-![image](https://user-images.githubusercontent.com/99301347/165000318-025028dd-8ab3-471a-b8dd-7eaa67036b57.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272422-5737057c-9fa6-4915-a5ac-8233396d8245.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272436-f4306a4d-58b8-44ab-975e-05d1b0debb44.png)
+![image](https://user-images.githubusercontent.com/99301347/167272444-ae9dc113-b0b1-470f-843c-049bcca455dd.png)
+![image](https://user-images.githubusercontent.com/99301347/167272451-f3009b0b-b79e-4415-bac1-e40805ce6213.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272464-d130f4e1-c18e-4d8b-bb8a-ef64d048d5a6.png)
+![image](https://user-images.githubusercontent.com/99301347/167272468-92ef594e-03b5-46c9-a53c-8f6b8aa7d591.png)
+![image](https://user-images.githubusercontent.com/99301347/167272472-3a60f615-7f8b-4f3a-85b2-c68844fb5388.png)
+![image](https://user-images.githubusercontent.com/99301347/167272477-00c37e4a-9a8e-4deb-8f02-02c02eb42bbf.png)
+![image](https://user-images.githubusercontent.com/99301347/167272486-eb06dcc3-3edb-4011-a03a-5d7f53da7919.png)
+
+
 
 
 
