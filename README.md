@@ -85,8 +85,10 @@ La tabla/modelo usuarios permite registrar clientes  solo con sus datos y se pue
 
 ![image](https://user-images.githubusercontent.com/99301347/167272297-810df10e-88c3-4221-b556-05b48c8e9640.png)
 
+Se realizao la migracion de las tablas desde SQLite a PostgreSQL.
 
 El sitio presenta tambien 3 restricciones: Las opciones "Revisar Mensajes", "Ingresar Datos Usuarios" y "Lista Datos Usuarios" tiene restricciones de acceso, por lo que el usuario debe havbe ingresado antes de poder revisar estas opciones. Las restricciones se hicieron usando el decorador @login_required
+![image](https://user-images.githubusercontent.com/99301347/165001674-0dd6aba9-3803-42a3-b02e-8bec3f47352b.png)
 
 Las opciones en la barra de navegacion se depliegan dependiendo del tipo de usuario que ingresa. 
 
@@ -106,11 +108,6 @@ Si el usuario ha ingresado como usuario activo (cliente), solamente puede visual
 ![image](https://user-images.githubusercontent.com/99301347/167272192-813ce20c-67e0-4c3f-b133-f7f86f2f5d02.png)
 ![image](https://user-images.githubusercontent.com/99301347/167272204-e318bc46-d6c0-405d-8f37-03b5501ea8eb.png)
 
-
-
-
-
-![image](https://user-images.githubusercontent.com/99301347/165001674-0dd6aba9-3803-42a3-b02e-8bec3f47352b.png)
 
 Se implemento la personalizacion de la pagina de error 404, sin embargo no es posible activarla considerando que su implementacion significa llevar un ambiente de produccion donde los archivos estaticos no son reconocidos, por lo que los archivs de estilo e imagenes se desactivan. 
 
