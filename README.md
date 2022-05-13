@@ -25,6 +25,7 @@ Este proyecto fue creado usando:
 * DataTable plugin
 * Python (https://www.python.org/)
 * Django (https://www.djangoproject.com/)
+* PostgreSQL (https://www.postgresql.org/)
 
 <a name="Instalacion"></a>
 ## Instalacion
@@ -58,29 +59,55 @@ Los archivos de imagenes, CSS y JS se encuentran dentro de un directorio static 
 
 Se puede navegar a traves del sitio usando las opciones que entrega la barra de navegacion
 
-- inicio y productos: presentacion de la tienda y productos
+- inicio, Mis trabajosy productos: presentacion de la tienda y productos
 - contacto: formulario para enviar mensaje 
 - revisar mensaje: lista todos los mensajes enviados
-- ingresar datos usuarios: formulario para ingresar datos del usuario
-- lista datos de usuario:  lista de usuarios y sus datos
-- Registrarse: registro de nuevo usuario
+- Registro_Clientes: formulario para registro de clientes (no para ingresar con usuario) y poder recibir informacion de la tienda
+- lista datos de clientes:  lista de clientes y sus datos
+- Registro Usuarios: registro de nuevo usuario
 - Ingresar: ingreso a la pagina
 - Salir: salida de usuario
 
-
 El desarrollo del codigo de backend se hizo usando la framework django en conjunto con python.
 
-Existe un superusuario creado y se agrego la opcion de registro de nuevos usuarios a traves del sitio con la opcion "Registrarse" en la barra de navegacion.
+Existe un superusuario creado y se agrego la opcion de registro de nuevos usuarios a traves del sitio con la opcion "Registro Usuarios" en la barra de navegacion.
 
-El sitio tambien permite el ingreso de usuarios ya registrados aa traves de la opcion "Ingresar". Una avez que el usuario ingresa, se despliega un mensaje de bienvenida personalizado, y el nombre aparece en la esquina superiror derecha con el tipo de usuario registrado.
+El sitio tambien permite el ingreso de usuarios ya registrados a traves de la opcion "Ingresar". Una avez que el usuario ingresa, se despliega un mensaje de bienvenida personalizado, y el nombre aparece en la esquina superiror derecha con el tipo de usuario registrado.
 
 La opcion "Salir" permite al usuario desconectarse.
 
-Se crearon tambien 2 modelos (Usuarios y Mensajes) las que almacenas datos de usuarios y mensajes enviados. Estas clase se pueden tambien accesarse desde la barra de navegacion en la opcion "Ingresar Datos Usuario" y "Contacto". Estos ingresos se pueden visualizar desde el sitio en "Lista Datos Usuarios" y en "Revisar Mensajes"
+
+Se crearon tambien 2 modelos (Usuarios y Mensajes) las que almacenas datos de usuarios y mensajes enviados. Estas clase se pueden tambien accesarse desde la barra de navegacion en la opcion "Ingresar Datos Usuario" y "Contacto". Estos ingresos se pueden visualizar desde el sitio en "Lista Datos Usuarios" y en "Revisar Mensajes".Se creo ademas un tercer modelo (Productos) para listar los productos y su precio.
+
+![image](https://user-images.githubusercontent.com/99301347/167272247-5d273e20-66a7-4f8c-8d7c-41e721970ecf.png)
+
+La tabla/modelo usuarios permite registrar clientes  solo con sus datos y se pueden ver en su totalidad desde la opcion "Lista Datos clientes" habiendo ingresado como superusuario o staff
+
+![image](https://user-images.githubusercontent.com/99301347/167272297-810df10e-88c3-4221-b556-05b48c8e9640.png)
+
+Se realizao la migracion de las tablas desde SQLite a PostgreSQL.
 
 El sitio presenta tambien 3 restricciones: Las opciones "Revisar Mensajes", "Ingresar Datos Usuarios" y "Lista Datos Usuarios" tiene restricciones de acceso, por lo que el usuario debe havbe ingresado antes de poder revisar estas opciones. Las restricciones se hicieron usando el decorador @login_required
-
 ![image](https://user-images.githubusercontent.com/99301347/165001674-0dd6aba9-3803-42a3-b02e-8bec3f47352b.png)
+
+Las opciones en la barra de navegacion se depliegan dependiendo del tipo de usuario que ingresa. 
+
+![image](https://user-images.githubusercontent.com/99301347/167272001-ac4081c5-421d-4634-98c7-b50d7ac57030.png)
+![image](https://user-images.githubusercontent.com/99301347/167272012-8578e7e6-ab4c-4b0f-baca-fc3830eda9ec.png)
+![image](https://user-images.githubusercontent.com/99301347/167272023-a318d0f4-7271-46e7-96f1-a86734d666c0.png)
+
+si el usuario no ha ingresado, se despliegan las siguientes opciones
+![image](https://user-images.githubusercontent.com/99301347/167272039-c5f56132-69f9-4390-bd95-dc6298db4c60.png)
+
+Los mensajes enviados a traves de la pagina contacto, se pueden editar, borrar y visualizar en forma filtrada por el email que se quiere. si se esta ingresado como superusuario/staff, estos se pueden modificar desde el link "revisar mensajes"
+
+![image](https://user-images.githubusercontent.com/99301347/167272141-0ba24bad-865c-4c72-adfe-01b0cc2d5d86.png)
+
+Si el usuario ha ingresado como usuario activo (cliente), solamente puede visualizar, editar o eliminar los mensajes que estan bajo su email. De esta forma, puede entrar a la opcion "contacto" y desde ahi revisar sus mensajes
+
+![image](https://user-images.githubusercontent.com/99301347/167272192-813ce20c-67e0-4c3f-b133-f7f86f2f5d02.png)
+![image](https://user-images.githubusercontent.com/99301347/167272204-e318bc46-d6c0-405d-8f37-03b5501ea8eb.png)
+
 
 Se implemento la personalizacion de la pagina de error 404, sin embargo no es posible activarla considerando que su implementacion significa llevar un ambiente de produccion donde los archivos estaticos no son reconocidos, por lo que los archivs de estilo e imagenes se desactivan. 
 
@@ -93,13 +120,20 @@ Para visualizarla , se debe hacer los siguientes cambios en el archivo setting.p
 
 <a name="Visualizacion"></a>
 ## Visualizacion del sitio web
-![image](https://user-images.githubusercontent.com/99301347/165000180-bbbe6f55-f3a2-4e01-9eee-b6c50368d2d9.png)
-![image](https://user-images.githubusercontent.com/99301347/165000228-a2d3820c-69e4-419c-82a9-418d65a6d6d1.png)
-![image](https://user-images.githubusercontent.com/99301347/165000236-cc322c14-04d9-40cc-9d94-8115223f627a.png)
-![image](https://user-images.githubusercontent.com/99301347/165000295-555da441-df8f-48f3-a05f-fb8c051b58eb.png)
-![image](https://user-images.githubusercontent.com/99301347/165000299-54e89761-8724-418f-b1d1-abf5328af826.png)
-![image](https://user-images.githubusercontent.com/99301347/165000307-02276d4d-c45c-4600-9ce6-8b94bba606eb.png)
-![image](https://user-images.githubusercontent.com/99301347/165000318-025028dd-8ab3-471a-b8dd-7eaa67036b57.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272422-5737057c-9fa6-4915-a5ac-8233396d8245.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272436-f4306a4d-58b8-44ab-975e-05d1b0debb44.png)
+![image](https://user-images.githubusercontent.com/99301347/167272444-ae9dc113-b0b1-470f-843c-049bcca455dd.png)
+![image](https://user-images.githubusercontent.com/99301347/167272451-f3009b0b-b79e-4415-bac1-e40805ce6213.png)
+
+![image](https://user-images.githubusercontent.com/99301347/167272464-d130f4e1-c18e-4d8b-bb8a-ef64d048d5a6.png)
+![image](https://user-images.githubusercontent.com/99301347/167272468-92ef594e-03b5-46c9-a53c-8f6b8aa7d591.png)
+![image](https://user-images.githubusercontent.com/99301347/167272472-3a60f615-7f8b-4f3a-85b2-c68844fb5388.png)
+![image](https://user-images.githubusercontent.com/99301347/167272477-00c37e4a-9a8e-4deb-8f02-02c02eb42bbf.png)
+![image](https://user-images.githubusercontent.com/99301347/167272486-eb06dcc3-3edb-4011-a03a-5d7f53da7919.png)
+
+
 
 
 
