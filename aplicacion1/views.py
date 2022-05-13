@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .backend import MyBackend
 
 from .models import Usuario, Mensaje, Producto
-from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm
+from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm
 
 MyBackend=MyBackend()
 
@@ -65,7 +65,7 @@ def login(request):   #ingreso de usuario admin
             user=authenticate(request, username=usuario, password=clave)
             if user is not None:
                 auth_login(request, user)
-                messages.info(request, f"Has ingresado como {usuario}.")
+                messages.add_message(request, messages.INFO, f"Has ingresado como {usuario}." )
                 return redirect ('bienvenido')
             else:
                 messages.error(request,"Invalid username or password.")
@@ -80,7 +80,7 @@ def bienvenido (request):  #mensaje de bienvenida usaurio admin
 
 def salir (request):  #salir usuario admin
     logout (request)
-    messages.info(request, "You have successfully logged out.") 
+    messages.info(request, "Tu sesion ha terminado") 
     return redirect ("/login")
 
 def register(request):  #registro usuario admin
@@ -149,3 +149,16 @@ def productos_lista(request):
     producto=Producto.objects.all()
     return render (request,'aplicacion1/productos_lista.html',{"data":producto})
 
+def  ingreso_productos(request):  # ingreso de nuevos productos
+    form = ProductoForm()
+    if request.method == "POST":
+        form=ProductoForm(data=request.POST)
+        producto=form.save (commit=False)
+        producto.save()
+        color=form.cleaned_data ['color']
+        for col in color:
+            producto.color.add(col)
+        return redirect('productos_lista')
+
+    else:
+        return render (request, 'aplicacion1/ingreso_productos.html',{"form":form})

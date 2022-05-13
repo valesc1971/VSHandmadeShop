@@ -30,10 +30,10 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 
-class ProductosForm(forms.ModelForm):
+class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields =('nombre', 'descripcion', 'precio') 
+        fields =('nombre', 'descripcion', 'precio', 'clasificacion', 'codigo', 'color') 
 
 class EmailForm(forms.Form):
     email=forms.EmailField()

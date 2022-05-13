@@ -4,6 +4,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: rgb(228, 241, 241);
+
 }
 
 h1{
@@ -94,27 +95,28 @@ nav{
   border-radius: 5px;
 }
 
-section { 
-  background-color:  rgb(148, 145, 138);
-  margin: 10px;
-  color:#fff ;
+#historia { 
+ 
+  margin: 2%;
+  color:  rgb(116, 104, 76);
   }
 
-section h2{
+#historia h2{
   padding-top: 10px;
   text-align: center;
-  color:#fff ;
-  background-color:  rgb(148, 145, 138);
+  color: rgb(116, 104, 76);
+
   font-size: x-large;
   
 }
 
-section p{
-  line-height: 150%;
+#historia p{
+  line-height: 200%;
   padding-left:10px;
   padding-right:10px;
   text-align:justify;
-  background-color:  rgb(148, 145, 138);
+  font-size: small;
+
   
 }
 
@@ -143,27 +145,21 @@ margin-bottom: 1%;
   
   }
   
-  #carouselExampleIndicators{
-    margin-left:35%;
-  }
-  
-  
+
   .carousel-item {
-    border: 10px solid rgb(148, 145, 138);
-  
-  
+    border: 2px solid rgb(148, 145, 138);
+    
   }
-  
-  
+    
   .carousel-inner img {
     width: 10%;
     height: auto;
-  
-  
+    align-content: center;
+    
   }
   
   .carousel {
-    width:25%;
+    width:50%;
     margin-left:25%;
   }
   
@@ -171,7 +167,25 @@ margin-bottom: 1%;
     width: 100%;
   }
   
+  .carousel-control-next-icon {
+
+    width: 50%;
+
+  }
  
+  .carousel-control-prev-icon {
+
+    width: 50%;
+
+  }
+
+
+  .carousel-caption h5{
+  font-size: small;
+  margin: 0%;
+
+  }
+
   .mb-3 {
     width: 40%;
     margin-left: 30%;
@@ -279,10 +293,36 @@ background-color:  rgba(161, 202, 206, 0.87);
 
 #logo {
 
-width: 10%;
-margin-left:45%;
-margin-right:45%;
+width: 30%;
+margin-left:25%;
+margin-right:25%;
 }
+
+#hora {
+
+text-align: right;
+font-size: small;
+color: rgb(146, 139, 120);
+
+  }
+
+
+#dia {
+
+    text-align: left;
+    font-size: small;
+    color: rgb(146, 139, 120);
+}
+
+#form_base {
+
+margin-right: 2%;
+margin-left: 2%;
+
+padding: 0%;
+}
+
+
 
 #bienvenida{
 
@@ -355,7 +395,42 @@ span{
 
 }
 
+#mensaje_alerta p{
+  color: red;
+  text-align: center;
+}
 
+
+#div_id_email{
+
+  margin-right: 45%;
+}
+
+#mensaje{
+margin-top: 5%;
+margin-right: 10%;
+padding-bottom: 2%;
+
+}
+
+#info_direccion {
+
+margin-top: 10%;
+margin-left: 10%;
+text-align: center;
+}
+#info_mapa{
+
+  margin-left: 20%;
+
+}
+
+#form_ver_mensaje{
+
+  margin-top: 20%;
+  margin-right: 25%;
+  font-size: x-small;
+}
 
 footer {
   background-color: rgb(148, 145, 138);

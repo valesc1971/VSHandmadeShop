@@ -18,6 +18,8 @@ urlpatterns = [
     path('eliminar_mensaje/<int:id>/', views.eliminar_mensaje, name='eliminar_mensaje'),
     path('editar_mensaje/<int:id>/', views.editar_mensaje, name='editar_mensaje'),
     path('mensaje_mail/<str:email>/', views.mensaje_mail, name='mensaje_mail'),
+    path('ingreso_productos/', views.ingreso_productos, name='ingreso_productos'),
+
 
 
     

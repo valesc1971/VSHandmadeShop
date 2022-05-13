@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from telnetlib import AUTHENTICATION
 
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -138,3 +141,4 @@ AUTHENTICATION_BACKEND = ['aplicacion1.backend.MyBackend', 'django.contrib.auth.
 LOGIN_REDIRECT_URL = 'index'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+

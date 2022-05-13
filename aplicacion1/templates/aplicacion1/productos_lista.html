@@ -14,7 +14,12 @@
                     <tr>
                       <th>nombre</th>
                       <th>descripcion</th>
-                      <th>precio</th>    
+                      <th>precio</th>
+                      <th>clasificacion</th>
+                      <th>codigo</th>
+                      <th>color</th>
+
+
                     </tr>
                   
                   </thead>
@@ -24,6 +29,13 @@
                       <td>{{prod.nombre}}</td>
                       <td>{{prod.descripcion}}</td>
                       <td>{{prod.precio}}</td>
+                      <td>{{prod.clasificacion.nombre}}</td>
+                      <td>{{prod.codigo.codigo}}</td>
+                      <td>
+                        {% for col in  prod.color.all %}
+                          {{col.color}}
+                        {% endfor %}
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>
