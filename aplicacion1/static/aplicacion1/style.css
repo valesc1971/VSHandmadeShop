@@ -401,6 +401,11 @@ span{
 }
 
 
+#form_contacto {
+margin-bottom:20%;
+margin-right: 20%;
+}
+
 #div_id_email{
 
   margin-right: 45%;
@@ -408,8 +413,11 @@ span{
 
 #mensaje{
 margin-top: 5%;
+
 margin-right: 10%;
+border-bottom: 10%;
 padding-bottom: 2%;
+
 
 }
 

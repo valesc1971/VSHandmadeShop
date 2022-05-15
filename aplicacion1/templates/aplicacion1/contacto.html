@@ -4,13 +4,14 @@
 <header>
   <h1>Mensaje de Contacto</h1> 
   (envia mensajes una vez ingresado y puede revisar mensajes anteriores en base al mail)
+  (podria ser para contacto de compra y hacer la orden de compra)
 </header>
 
 {% load crispy_forms_tags %}
 <div class="container">
   <div class="row">
     <div class="col-9">
-      <form action= "/contacto/" method= "POST" class="form-1" name="miFormu" onsubmit="return(validacion());">  
+      <form id="form_contacto" action= "/contacto/" method= "POST" class="form-1" name="miFormu" onsubmit="return(validacion());">  
         {% csrf_token %}
         
         <div id="mensaje">
@@ -53,10 +54,11 @@
         </div>
       </div>
 
-      <div id="form_ver_mensaje"
-        <form action="/mensaje_mail/{{ request.user.email }}">
+      <div id="form_ver_mensaje">
+        <form action="/mensaje_mail/{{ request.user.email }}" >
           <button id="btn-3" class="btn btn-outline-dark" type="submit"/>Revisar Mensajes Anteriores</button>
           <p>{{ request.user.email }} </p>
+
         </form> 
       </div>
     

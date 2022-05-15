@@ -18,7 +18,7 @@ class Mensaje(models.Model):
     nombre=models.CharField(max_length=50, null=False)
     apellido=models.CharField(max_length=100, null=False)
     email=models.EmailField()
-    mensaje=models.CharField(max_length=500, null=False)
+    mensaje=models.TextField(max_length=500, null=False)
 
 class Clasificacion (models.Model): #1 categoria puede estar asociado a varios productos, pero 1 producto solo 1 categoria (1 a n)
       nombre= models.CharField(max_length=50)
