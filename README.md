@@ -22,10 +22,12 @@ Este proyecto fue creado usando:
 * Boostrap   (https://getbootstrap.com/)
 * JavaScript (https://datatables.net/)
 * JQuery    (https://jquery.com/)
-* DataTable plugin
+* DataTable plugin (https://datatables.net/)
 * Python (https://www.python.org/)
 * Django (https://www.djangoproject.com/)
 * PostgreSQL (https://www.postgresql.org/)
+* FancyBox (http://fancybox.net/)
+* SweetAlert plugin (https://sweetalert.js.org/)
 
 <a name="Instalacion"></a>
 ## Instalacion
@@ -77,7 +79,7 @@ El sitio tambien permite el ingreso de usuarios ya registrados a traves de la op
 La opcion "Salir" permite al usuario desconectarse.
 
 
-Se crearon tambien 2 modelos (Usuarios y Mensajes) las que almacenas datos de usuarios y mensajes enviados. Estas clase se pueden tambien accesarse desde la barra de navegacion en la opcion "Ingresar Datos Usuario" y "Contacto". Estos ingresos se pueden visualizar desde el sitio en "Lista Datos Usuarios" y en "Revisar Mensajes".Se creo ademas un tercer modelo (Productos) para listar los productos y su precio.
+Se crearon tambien 2 modelos (Usuarios y Mensajes) las que almacenas datos de usuarios y mensajes enviados. Estas clases se pueden tambien accesar desde la barra de navegacion en la opcion "Ingresar Datos Usuario" y "Contacto". Estos ingresos se pueden visualizar desde el sitio en "Lista Datos Usuarios" y en "Revisar Mensajes".Se creo ademas un tercer modelo (Productos) para listar los productos y su precio.
 
 ![image](https://user-images.githubusercontent.com/99301347/167272247-5d273e20-66a7-4f8c-8d7c-41e721970ecf.png)
 
@@ -85,7 +87,7 @@ La tabla/modelo usuarios permite registrar clientes  solo con sus datos y se pue
 
 ![image](https://user-images.githubusercontent.com/99301347/167272297-810df10e-88c3-4221-b556-05b48c8e9640.png)
 
-Se realizao la migracion de las tablas desde SQLite a PostgreSQL.
+Se realizo la migracion de las tablas desde SQLite a PostgreSQL.
 
 El sitio presenta tambien 3 restricciones: Las opciones "Revisar Mensajes", "Ingresar Datos Usuarios" y "Lista Datos Usuarios" tiene restricciones de acceso, por lo que el usuario debe havbe ingresado antes de poder revisar estas opciones. Las restricciones se hicieron usando el decorador @login_required
 ![image](https://user-images.githubusercontent.com/99301347/165001674-0dd6aba9-3803-42a3-b02e-8bec3f47352b.png)
@@ -108,6 +110,23 @@ Si el usuario ha ingresado como usuario activo (cliente), solamente puede visual
 ![image](https://user-images.githubusercontent.com/99301347/167272192-813ce20c-67e0-4c3f-b133-f7f86f2f5d02.png)
 ![image](https://user-images.githubusercontent.com/99301347/167272204-e318bc46-d6c0-405d-8f37-03b5501ea8eb.png)
 
+Para realizar el ejercicio de relaciones entre modelos, se uso el modelo anterior "Producto" y se creo un formulario para el ingreso de nuevos productos
+
+![image](https://user-images.githubusercontent.com/99301347/168374442-c20ba438-5d69-476d-9e1f-abc65c107d1c.png)
+De estaa forma, se crearon los modelos Clasificacion, Codigo, Color con los siguientes tipos de relaciones con el model Producto
+
+
+Clasificacion: uno a muchos
+Codigo: uno a uno
+Color: muchos a muchos
+
+![image](https://user-images.githubusercontent.com/99301347/168374470-7db60eb4-c896-4065-8604-b3985efcbff0.png)
+
+De esta forma, cuando se ingresa un nuevo producto a traves del formulario 8o admin), se puede elegir de distintas clasificaciones 8pero solo 1 clasificacion para el producto), se pued tomar solo 1 codigo (1 codigo para cada producto sin repetirse) y se pueden elegir mas de 1 color para 1 solo producto. La lista de los productos se puede visualizar en la tabla Productos que se puede accesar desde la barra de navegacion
+
+![image](https://user-images.githubusercontent.com/99301347/168375038-ad4cd24c-ec6b-440a-9f09-cfa2c19d39f7.png)
+
+Para realizar el ejercicio de migraciones (revertir y restaurar) se creo un nuevo modelo "Pregunta"
 
 Se implemento la personalizacion de la pagina de error 404, sin embargo no es posible activarla considerando que su implementacion significa llevar un ambiente de produccion donde los archivos estaticos no son reconocidos, por lo que los archivs de estilo e imagenes se desactivan. 
 
