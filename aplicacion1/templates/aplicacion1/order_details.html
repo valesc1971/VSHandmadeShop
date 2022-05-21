@@ -1,0 +1,38 @@
+{%extends 'base_layout.html'%}{%block content%}
+
+
+<body >
+<div id="tabla_usuarios">
+<header>
+  <h1>order details</h1> 
+</header>
+TOTAL: $ {{ order.get_cart_total }}
+<br>
+USUARIO: {{request.user.email}}
+<br>
+#Orden {{ order.ref_code }}
+    <table id="example" class="stripe"> 
+    
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+
+        </tr>
+
+      {% for item in order.get_cart_items %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{item.product.nombre}}</td>
+          <td>{{item.product.precio}}</td>
+       
+        </tr>
+        {% endfor %} 
+
+    </table>
+</div>
+</body>
+
+</html>
+{%endblock content%}  
+

@@ -1,6 +1,8 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
-
+from PIL import Image
+from django.shortcuts import reverse
+from django.conf import settings
 # Create your models here.
 
 class Usuario(models.Model):
@@ -42,13 +44,25 @@ class Color (models.Model): # 1 producto puede tener muchos colores y un color p
 class Producto(models.Model):
     nombre=models.CharField(max_length=50, null=False)
     descripcion=models.CharField(max_length=300, null=False)
-    precio=models.IntegerField()
+    precio=models.FloatField()
+    imagen=models.ImageField(upload_to='foto_prod', blank=True, null=True, default='logo.png')
     clasificacion=models.ForeignKey(Clasificacion, null=True, on_delete=models.SET_NULL)
     codigo=models.OneToOneField(Codigo, blank=True, null=True, on_delete=models.SET_NULL)
     color= models.ManyToManyField(Color)
+    slug = models.SlugField()
     
     def __str__(self):
         return self.nombre
+
+    def get_absolute_url(self):
+        return reverse("producto_display", kwargs={'slug': self.slug})
+
+    def get_add_to_cart_url(self):
+        return reverse("add-to-cart", kwargs={'slug': self.slug})
+
+    def get_remove_from_cart_url(self):
+        return reverse("remove-from-cart", kwargs={'slug': self.slug})
+
 
 class Pregunta(models.Model):
     nombre=models.CharField(max_length=50, null=False)
@@ -58,3 +72,15 @@ class Pregunta(models.Model):
 
     def __str__(self):
         return self.pregunta
+
+
+class Orden(models.Model):
+    nombre=models.CharField(max_length=50, null=False)
+    descripcion=models.CharField(max_length=100, null=False)
+    precio=models.IntegerField()
+    cantidad=models.IntegerField()
+    email=models.EmailField()
+
+
+
+

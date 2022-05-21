@@ -5,29 +5,36 @@
     <h1 id="titulo1"> Ingresar </h1>
 </div>
 
-
-{% load crispy_forms_tags %}
 <div class="container">
     <div class="row">
-      <div class="col-9">
-<form action="/login/" method="POST">
-    {% csrf_token %}
-    <div id="form_register"> 
-        <div class="row">
-            <div class="col-6">
-              {{ form.nombre|as_crispy_field }}
-            </div>
-            <div class="col-6">
-              {{ form.password|as_crispy_field }}
-            </div>
+      <div class="col-10">
+        {% load crispy_forms_tags %}
+        <div class="container">
+        <form action="/login/" method="POST">
+            {% csrf_token %}
+            <div id="form_login"> 
+        
+                    <div class="col-6">
+                      {{ form.nombre|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                      {{ form.password|as_crispy_field }}
+                    </div>
+
         </div>
-
+        </div>
+            <button id="btn-2" class="btn btn-outline-dark">Ingresar</button>
+        
+        </form>
+        
+      </div>
+      <div class="col-2">
+        
+      </div>
     </div>
-    </div>
-</div>
-</div>
-    <button id="btn-2" class="btn btn-outline-dark">Ingresar</button>
+  </div>
 
-</form>
+
+
 
 {% endblock %}

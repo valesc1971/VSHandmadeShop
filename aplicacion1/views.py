@@ -1,4 +1,5 @@
 from cgi import print_directory
+from datetime import datetime
 from mailbox import NoSuchMailboxError
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -6,11 +7,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail,EmailMessage, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.urls import reverse
+import string
+from datetime import date
+import datetime
+import random
+
 
 from .backend import MyBackend
 
-from .models import Usuario, Mensaje, Producto
-from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm
+from .models import  Usuario, Mensaje, Producto, Orden
+from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm, OrdenForm
 
 MyBackend=MyBackend()
 
@@ -49,8 +58,10 @@ def  formulario_usuario(request):  # registro de usuario
             usuario.email=form.cleaned_data['email']
             usuario.receive_newsletter=form.cleaned_data['receive_newsletter']
             usuario.save()
-            messages.info(request, f"{usuario.nombre}, Gracias por registrarte con nosotros .")
-        return redirect('ejemplo')
+            messages.success(request, f"{usuario.nombre}, Gracias por registrarte con nosotros .")
+        else:
+            messages.error(request, 'rut no es valido' )
+        return redirect('formulario_usuario')
     else:
         form = UsuarioForm()
         return render (request, 'aplicacion1/formulario_usuario.html',{"form":form})
@@ -112,8 +123,17 @@ def contacto(request):  #formulario contacto para envia mensajes q se almacenan 
                 message.email=form.cleaned_data['email']
                 message.mensaje=form.cleaned_data['mensaje']
                 message.save()
+                messages.info(request, "Gracias por tu mensaje. Me contactare a la brevedad") 
+                html_content=render_to_string('aplicacion1/email_template.html')
+                to_email = str(form['email'].value())
+                msg = EmailMultiAlternatives('subject',html_content, 'valepython123@gmail.com',[to_email,])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
 
-            return redirect('/contacto')
+                #send_mail('subject',body, 'valepython123@gmail.com',[to_email,],fail_silently = False )
+        
+              
+                return redirect('/contacto')
         else:
             form = MensajeForm()
             return render (request, 'aplicacion1/contacto.html',{"form":form})
@@ -152,7 +172,7 @@ def productos_lista(request):
 def  ingreso_productos(request):  # ingreso de nuevos productos
     form = ProductoForm()
     if request.method == "POST":
-        form=ProductoForm(data=request.POST)
+        form=ProductoForm(data=request.POST, files=request.FILES)
         producto=form.save (commit=False)
         producto.save()
         color=form.cleaned_data ['color']
@@ -162,3 +182,24 @@ def  ingreso_productos(request):  # ingreso de nuevos productos
 
     else:
         return render (request, 'aplicacion1/ingreso_productos.html',{"form":form})
+
+def producto_display(request):
+    products=Producto.objects.all()
+    return render (request,'aplicacion1/producto_display.html',{"products":products})
+
+def compra_producto(request, id):
+        orden=Producto.objects.get(pk=id)
+        form = OrdenForm(initial={'email':request.user.email}, instance=orden)
+        if request.method == "POST":
+            form=OrdenForm(data=request.POST)
+            form.save()
+            messages.info(request, "Gracias por tu compra. Recibiras un email con tu numero de compra") 
+            return redirect('/producto_display')
+        else:
+            return render (request, 'aplicacion1/compra_producto.html',{"form":form} )
+
+
+
+
+
+

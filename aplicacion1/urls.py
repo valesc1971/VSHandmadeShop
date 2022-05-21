@@ -19,8 +19,11 @@ urlpatterns = [
     path('editar_mensaje/<int:id>/', views.editar_mensaje, name='editar_mensaje'),
     path('mensaje_mail/<str:email>/', views.mensaje_mail, name='mensaje_mail'),
     path('ingreso_productos/', views.ingreso_productos, name='ingreso_productos'),
+    path('producto_display/', views.producto_display, name='producto_display'),
+    path('compra_producto/<int:id>/', views.compra_producto, name='compra_producto'),
 
 
 
-    
+
+  
     ]

@@ -1,0 +1,48 @@
+{%extends 'base_layout.html'%}{%block content%}
+
+
+<body >
+<div id="tabla_usuarios">
+<header>
+  <h1>Estado de Ordenes</h1> 
+</header>
+
+    <table id="example" class="stripe" > 
+      <thead>
+     
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripcio</th>    
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>E-mail</th>
+          <th>Estado de la Orden</th>
+
+        </tr>
+      
+      </thead>
+      <tbody>
+        {% for orden in orden %}
+        <tr>
+          <td>{{orden.id}}</td>
+          <td>{{orden.nombre}}</td>
+          <td>{{orden.descripcion}}</td>
+          <td>{{orden.precio}}</td>
+          <td>{{orden.cantidad}}</td>
+          <td>{{orden.email}}</td>
+        </tr>
+        {% endfor %} 
+      </tbody>
+
+     
+   <tfoot>
+    
+      </tfoot> 
+    </table>
+</div>
+</body>
+
+</html>
+{%endblock content%}  
+

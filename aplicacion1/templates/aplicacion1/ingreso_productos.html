@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-9">
         
-            <form action="" method="POST">
+            <form action="" method="POST" enctype='multipart/form-data'>
                 {% csrf_token %}
                 <div id="form_register"> 
                     <div class="row">
@@ -33,7 +33,9 @@
                           <div class="col-6">
                             {{ form.color|as_crispy_field }}
                           </div>
-            
+                          <div class="col-6">
+                            {{ form.imagen|as_crispy_field }}
+                          </div>
                     </div>
             
                 </div>

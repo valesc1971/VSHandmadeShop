@@ -1,14 +1,20 @@
 from django import forms
 from django.db.models import fields
-from .models import Mensaje, Usuario, Producto
+
+from aplicacion1.validators import validarRut, check_pass_size
+from .models import Mensaje, Orden, Usuario, Producto, Orden
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
+
 class UsuarioForm(forms.ModelForm):
     receive_newsletter = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    rut=forms.CharField(validators=[validarRut])
     class Meta:
         model = Usuario
-        fields =('rut', 'nombre', 'apellido','edad', 'email')
+        fields =( 'nombre', 'apellido','edad', 'email')
+
+               
 
 class LoginForm(forms.Form):
     nombre=forms.CharField(widget=forms.TextInput)
@@ -33,8 +39,18 @@ class UserRegisterForm(UserCreationForm):
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields =('nombre', 'descripcion', 'precio', 'clasificacion', 'codigo', 'color') 
+        fields =('nombre', 'descripcion', 'precio', 'clasificacion', 'codigo', 'color', 'imagen') 
 
 class EmailForm(forms.Form):
     email=forms.EmailField()
+
+class OrdenForm(forms.ModelForm):
+   
+    class Meta:
+        model = Orden
+        fields =('nombre', 'descripcion', 'precio', 'cantidad', 'email')
+
+
+
+
 

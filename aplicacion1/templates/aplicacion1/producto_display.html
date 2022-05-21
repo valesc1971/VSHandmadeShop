@@ -1,0 +1,29 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+
+
+<div class="container">
+  <div class="row" id="galeria">
+      {% for product in products %}  
+      <div id= "prod_gal" class="col-md-6"class="card" style="width: 18rem;">
+        {% if  product.imagen %}
+          <img class="card-img-top" src="{{ product.imagen.url }}" alt="Card image cap" >
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ product.nombre }}</h5>
+          <p class="card-text">{{ product.descripcion }}</p>
+          <p class="card-text">Precio {{ product.precio }}</p>
+          {% if user.is_active %}
+          <a href="/add_to_cart/{{product.id}}" class="btn btn-primary" id="btn-4">Comprar</a>
+          <a href="#" class="btn btn-primary" id="btn-4">Ver</a>
+          {% endif %}
+        </div>
+    </div>  
+    {% endfor %}
+  </div>
+</div>
+
+
+{%endblock content%}
+

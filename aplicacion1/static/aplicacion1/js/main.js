@@ -30,7 +30,7 @@ function validacion() {
       document.miFormu.mensaje.focus()
     
       } else if (document.miFormu.mensaje.value =true) 
-      {{alert("Gracias por su mensaje. Me contactare a la brevedad");}
+      {{Swal.fire("Gracias por su mensaje. Me contactare a la brevedad");}
       return true
     
       }

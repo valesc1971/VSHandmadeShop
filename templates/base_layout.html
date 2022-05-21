@@ -30,12 +30,20 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'productos' %}" id="form-contact">Mis trabajos</a>
 			</li>
+            {% if user.is_staff %}
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'ingreso_productos' %}" id="form-contact">Ingresar Productos</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="{% url 'productos_lista' %}" id="form-contact">Productos</a>
+				<a class="nav-link" href="{% url 'productos_lista' %}" id="form-contact">Lista Productos</a>
 			</li>
+            {% endif %}
+
+            <li class="nav-item">
+				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Comprar</a>
+			</li>
+
+
             {% if user.is_active%}
 			<li class="nav-item">
                 
@@ -78,6 +86,7 @@
                 <h5> active </h5>
            {% endif %}
         </div>
+        
 	</div>
 
 </nav>
@@ -87,7 +96,9 @@
       <div class="col-sm">
         <div id="dia">
             <p id="dia"></p>
-        
+         </div>
+         <div id="hora">
+        <p id="hora"></p>
         </div>
       </div>
       <div class="col-sm">
@@ -96,13 +107,24 @@
         </div>
       </div>
       <div class="col-sm">
-        <div id="hora">
-            <p id="hora"></p>
+          {% if user.is_active %}
+        <div id="form_ver_orden">
+            <form action="/orden_status/{{ request.user.email }}" >
+              <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Revisar ordenes Anteriores</button>
+              <p>{{ request.user.email }} </p>
         
-        </div>
+            </form> 
+            <form action="/order_details" >
+                <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Ver Carrito de Compras</button>
+          
+              </form> 
+            {% endif %}
+          </div
       </div>
     </div>
   </div>
+
+
 
 
 <div id="hora_dia">
@@ -113,7 +135,12 @@
 {% if messages %}
 {%for message in messages%}
 <div id= "mensaje_alerta">
-<p>{{message}}</p>
+    <script>
+        swal.fire({
+          text: "{{message}}",
+
+        });
+      </script>
 </div>
 {% endfor %}
 {% endif %}
@@ -148,7 +175,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
     <script src="{% static 'aplicacion1/js/main.js' %}"></script>
-    <script src="{% static 'aplicacion1/js/fechas.js' %}"></script>    
+    <script src="{% static 'aplicacion1/js/fechas.js' %}"></script>
+    <script src="{% static 'aplicacion1/js/validaciones.js' %}"></script> 
 
 </html>
 

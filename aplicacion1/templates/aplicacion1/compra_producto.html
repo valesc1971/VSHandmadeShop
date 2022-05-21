@@ -1,0 +1,47 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+<div id="titulo">
+  <h1 id="titulo1"> Comprar_Producto </h1>
+</div>
+
+
+{% load crispy_forms_tags %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div id="comprar">
+          <div class="row">
+            <div class="col-4">
+              {{ form.email|as_crispy_field }}
+            </div>
+          </div>
+          <div class="row">  
+              <div class="col-4">
+                {{ form.nombre|as_crispy_field }}
+              </div>
+              <div class="col-4">
+                {{ form.descripcion|as_crispy_field }}
+              </div>
+              <div class="col-2">
+                {{ form.precio|as_crispy_field }}
+              </div>
+              <div class="col-2">
+                {{ form.cantidad|as_crispy_field }}
+              </div>
+
+            </div>
+            </div>
+          </div>  
+        <button id="btn-2" class="btn btn-outline-dark">Comprar</button>
+
+    </form>
+    <div>
+      <td>{{orden.id}}</td>
+      <td>{{orden.nombre}}</td>
+      <td>{{orden.descripcion}}</td>
+      <td>{{orden.precio}}</td>
+    </div>
+
+{{aplicacion1_producto}}
+{%endblock content%}

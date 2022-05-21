@@ -1,0 +1,63 @@
+{%extends 'base_layout.html'%}{%block content%}
+
+
+<body >
+<div id="tabla_usuarios">
+<header>
+  <h1>checkout</h1> 
+</header>
+
+
+    <table id="example" class="stripe" > 
+      <thead>
+     
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+
+        </tr>
+      
+      </thead>
+
+   
+      <tbody>
+        {% for item in order.get_cart_items %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{item.product.nombre}}</td>
+          <td>{{item.product.precio}}</td>
+       
+
+        </tr>
+
+  
+        {% endfor %} 
+
+
+
+
+
+
+
+      </tbody>
+
+     
+   <tfoot>
+    
+      </tfoot> 
+    </table>
+</div>
+
+TOTAL: $ {{ order.get_cart_total }}
+<br>
+USUARIO: {{request.user.email}}
+<br>
+
+<form method="POST" action = 
+
+</body>
+
+</html>
+{%endblock content%}  
+
