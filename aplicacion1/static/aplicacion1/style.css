@@ -54,7 +54,15 @@ nav{
   background-color:  #fff;
 }
 
+#form-contact_drop{
+  color: rgb(148, 145, 138);
+  text-align: center;
+}
 
+#form-contact_drop:hover {
+  color:  #fff;
+  background-color: rgb(148, 145, 138);
+}
 
 .galeria{
   font-family: 'Roboto', sans-serif;

@@ -1,0 +1,61 @@
+{%extends 'base_layout.html'%}{%block content%}
+
+
+<body >
+<div id="tabla_usuarios">
+<header>
+  <h1>Ordenes</h1> 
+</header>
+
+    <table id="example" class="stripe" > 
+      <thead>
+     
+        <tr>
+          <th>Numero Orden</th>
+          <th>Fecha</th>
+          <th>Items</th>
+          <th>Cantidad</th>    
+          <th>Precio</th> 
+          <th>Total</th> 
+        </tr>
+      
+      </thead>
+     
+      
+      <tbody>
+        <p>{{ request.user.email }} </p>
+        <p>{{ request.user.username }} </p>
+        {% for compra in compra_user %}
+        <tr>
+          <td>{{compra.ref_code}}</td>
+          <td>{{compra.ordered_date}}</td>
+        <td>{% for prod in compra.items.all %}
+          {{prod.item.nombre}} 
+          <br>
+           {% endfor %}</td>
+
+        <td>{% for prod in compra.items.all %}
+          {{prod.quantity}} 
+          <br>
+        {% endfor %}</td>
+
+        <td>{% for prod in compra.items.all %}
+          {{prod.item.precio}} 
+          <br>
+        {% endfor %}</td>
+        <td>
+
+        </tr>
+        {% endfor %} 
+      </tbody>
+
+      <tfoot>
+    
+      </tfoot> 
+    </table>
+</div>
+</body>
+
+</html>
+{%endblock content%}  
+

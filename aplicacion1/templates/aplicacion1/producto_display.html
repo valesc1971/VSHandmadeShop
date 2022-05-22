@@ -15,8 +15,8 @@
           <p class="card-text">{{ product.descripcion }}</p>
           <p class="card-text">Precio {{ product.precio }}</p>
           {% if user.is_active %}
-          <a href="/add_to_cart/{{product.id}}" class="btn btn-primary" id="btn-4">Comprar</a>
-          <a href="#" class="btn btn-primary" id="btn-4">Ver</a>
+          <a href="/add-to-cart/{{product.slug}}" class="btn btn-primary" id="btn-4">Comprar</a>
+          <a href="/product/{{product.slug}}" class="btn btn-primary" id="btn-4">Ver</a>
           {% endif %}
         </div>
     </div>  

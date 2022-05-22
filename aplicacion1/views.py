@@ -1,7 +1,7 @@
 from cgi import print_directory
 from datetime import datetime
 from mailbox import NoSuchMailboxError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login , logout
@@ -14,12 +14,15 @@ import string
 from datetime import date
 import datetime
 import random
-
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 
 from .backend import MyBackend
 
-from .models import  Usuario, Mensaje, Producto, Orden
-from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm, OrdenForm
+from .models import  Usuario, Mensaje, Producto, Orden, Order, OrderItem
+from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm, OrdenForm, CheckoutForm
 
 MyBackend=MyBackend()
 
@@ -28,7 +31,6 @@ MyBackend=MyBackend()
 
 def index(request):
     return render (request,'aplicacion1/index.html')
-
 
 def productos(request):
     return render (request,'aplicacion1/productos.html')
@@ -160,7 +162,7 @@ def eliminar_mensaje(request, id):
 def mensaje_mail(request,email):
     email_list = Mensaje.objects.filter(email=email)
     return render(request, 'aplicacion1/mensaje_mail.html', {"correo":email_list})
-  
+
 
 def page_not_found_view(request, exception): #mensaje de error
     return render(request, '404.html', status=404)
@@ -198,8 +200,137 @@ def compra_producto(request, id):
         else:
             return render (request, 'aplicacion1/compra_producto.html',{"form":form} )
 
+def compra_user(request,user):
+    compra_user = Order.objects.filter(user=user)
+    print(compra_user)
+    return render(request, 'aplicacion1/compra_user.html', {"compra_user":compra_user})
+
+def create_ref_code():
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
+def is_valid_form(values):
+    valid = True
+    for field in values:
+        if field == '':
+            valid = False
+    return valid
+
+class OrderSummaryView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, 'aplicacion1/order_summary.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "You do not have an active order")
+            return redirect("/")
+
+
+class ItemDetailView(DetailView):
+    model = Producto
+    template_name = "aplicacion1/product.html"
+
+
+def add_to_cart(request, slug):
+    item = get_object_or_404(Producto, slug=slug)
+    order_item, created = OrderItem.objects.get_or_create(
+        item=item,
+        user=request.user,
+        ordered=False
+    )
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item.quantity += 1
+            order_item.save()
+            messages.info(request, "Cantidad actualizada")
+            return redirect("order_summary")
+        else:
+            order.items.add(order_item)
+            messages.info(request, "Se agrego este producto a tu orden")
+            return redirect("order_summary")
+    else:
+        ordered_date = timezone.now()
+        order = Order.objects.create(
+            user=request.user, ordered_date=ordered_date)
+        order.items.add(order_item)
+        messages.info(request, "Se agrego este producto a tu orden.")
+        return redirect("order_summary")
+
+def remove_from_cart(request, slug):
+    item = get_object_or_404(Producto, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            order.items.remove(order_item)
+            order_item.delete()
+            messages.info(request, "El producto ha sido eliminido de su orden.")
+            return redirect("order_summary")
+        else:
+            messages.info(request, "This item was not in your cart")
+            return redirect("product", slug=slug)
+    else:
+        messages.info(request, "No tienes una orden pendiente")
+        return redirect("product", slug=slug)
+
+def remove_single_item_from_cart(request, slug):
+    item = get_object_or_404(Producto, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order.items.remove(order_item)
+            messages.info(request, "This item quantity was updated.")
+            return redirect("order_summary")
+        else:
+            messages.info(request, "This item was not in your cart")
+            return redirect("product", slug=slug)
+    else:
+        messages.info(request, "You do not have an active order")
+        return redirect("product", slug=slug)
+
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        context = {'order': order,}
+        return render(self.request, "aplicacion1/checkout.html", context)
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        order.ordered=True
+        order.ref_code = create_ref_code()
+        order.save()
+        messages.success(self.request, "Your order was successful!")
+        return redirect("/")
 
 
 

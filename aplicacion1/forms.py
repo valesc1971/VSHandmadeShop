@@ -39,7 +39,8 @@ class UserRegisterForm(UserCreationForm):
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields =('nombre', 'descripcion', 'precio', 'clasificacion', 'codigo', 'color', 'imagen') 
+        fields =('nombre', 'descripcion', 'precio', 'clasificacion', 'codigo', 'color', 'imagen', "slug")
+        labels = { "slug": "Etiqueta", } 
 
 class EmailForm(forms.Form):
     email=forms.EmailField()
@@ -49,6 +50,10 @@ class OrdenForm(forms.ModelForm):
     class Meta:
         model = Orden
         fields =('nombre', 'descripcion', 'precio', 'cantidad', 'email')
+
+class CheckoutForm(forms.Form):
+    ciudad = forms.CharField(required=False)
+
 
 
 

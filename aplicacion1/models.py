@@ -55,7 +55,7 @@ class Producto(models.Model):
         return self.nombre
 
     def get_absolute_url(self):
-        return reverse("producto_display", kwargs={'slug': self.slug})
+        return reverse ("/aplicacion1/product", kwargs={'slug': self.slug})
 
     def get_add_to_cart_url(self):
         return reverse("add-to-cart", kwargs={'slug': self.slug})
@@ -63,6 +63,38 @@ class Producto(models.Model):
     def get_remove_from_cart_url(self):
         return reverse("remove-from-cart", kwargs={'slug': self.slug})
 
+class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} de {self.item.nombre}"
+
+    def get_total_item_price(self):
+        return self.quantity * self.item.precio
+
+    def get_final_price(self):
+        return self.get_total_item_price()
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ref_code = models.CharField(max_length=20, blank=True, null=True)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+    ciudad = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def get_total(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_final_price()
+        return total
 
 class Pregunta(models.Model):
     nombre=models.CharField(max_length=50, null=False)

@@ -12,6 +12,7 @@
  
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <link href="{% static 'aplicacion1/style.css' %}" rel="stylesheet" type="text/css" />
 </head>
@@ -30,14 +31,6 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'productos' %}" id="form-contact">Mis trabajos</a>
 			</li>
-            {% if user.is_staff %}
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'ingreso_productos' %}" id="form-contact">Ingresar Productos</a>
-			</li>
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'productos_lista' %}" id="form-contact">Lista Productos</a>
-			</li>
-            {% endif %}
 
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Comprar</a>
@@ -51,19 +44,10 @@
 			</li>
             {% endif %}
 
-            {% if user.is_staff %}
-            <li class="nav-item">
-				<a class="nav-link" href="/mostrar_mensaje" id="form-contact">Revisar Mensajes</a>
-			</li>
-            {% endif %}
+           
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Registro - Clientes</a>
 			</li>
-            {% if user.is_staff %}
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'usuarios' %}" id="form-contact">Lista Datos Clientes</a>
-			</li>
-            {% endif %}
             <li class="nav-item">
 				<a class="nav-link" href="/register" id="form-contact">Registro - Usuarios</a>
 			</li>
@@ -75,6 +59,19 @@
             <li class="nav-item">
 				<a class="nav-link" href="/salir" id="form-contact">Salir</a>
 			</li>
+            {% endif %}
+            {% if user.is_staff %}
+            <li class="nav-item dropdown">
+              <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a id="form-contact_drop" class="dropdown-item" href="{% url 'ingreso_productos' %}">Ingresar Productos</a>
+                <a id="form-contact_drop" class="dropdown-item" href="{% url 'productos_lista' %}" >Ver Lista de Productos</a>
+                <a id="form-contact_drop" class="dropdown-item" href="/mostrar_mensaje">Revisar Mensajes</a>
+                <a id="form-contact_drop" class="dropdown-item" href="{% url 'usuarios' %}">Revisar Lista Clientes</a>
+              </div>
+            </li>
             {% endif %}
         <div id="nombre_login">
            <p>{{ request.user.username }} </p>
@@ -109,12 +106,12 @@
       <div class="col-sm">
           {% if user.is_active %}
         <div id="form_ver_orden">
-            <form action="/orden_status/{{ request.user.email }}" >
+            <form action="/compra_user/{{ request.user.id }}" >
               <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Revisar ordenes Anteriores</button>
               <p>{{ request.user.email }} </p>
         
             </form> 
-            <form action="/order_details" >
+            <form action="/order_summary" >
                 <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Ver Carrito de Compras</button>
           
               </form> 
