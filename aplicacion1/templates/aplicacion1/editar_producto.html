@@ -1,0 +1,58 @@
+{%extends 'base_layout.html'%}
+{%block content%}
+
+<div id="titulo">
+  <h1 id="titulo1"> Editar Producto </h1>
+</div>
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-9">
+        
+            <form action="" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div id="form_register"> 
+                    <div class="row">
+                        <div class="col-6">
+                          {{ form.nombre|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                          {{ form.descripcion|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.precio|as_crispy_field }}
+                          </div>
+                          <div class="col-6">
+                            {{ form.clasificacion|as_crispy_field }}
+                          </div>
+                          <div class="col-6">
+                            {{ form.codigo|as_crispy_field }}
+                          </div>
+                          <div class="col-6">
+                            {{ form.color|as_crispy_field }}
+                          </div>
+                          <div class="col-6">
+                            {{ form.imagen|as_crispy_field }}
+                          </div>
+
+                          <div class="col-6">
+                            {{ form.slug|as_crispy_field }}
+                          </div>
+                    </div>
+            
+                </div>
+                </div>
+            </div>
+            </div>
+        
+        
+        </div>       
+
+       <button id="btn-2" class="btn btn-outline-dark">Actualizar</button>
+
+</form>
+
+
+{%endblock content%}

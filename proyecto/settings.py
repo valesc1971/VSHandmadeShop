@@ -126,6 +126,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_I18N = True    
+USE_L10N = True
+USE_DECIMAL_SEPARATOR = True
+DECIMAL_SEPARATOR = ","
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = "."
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -157,3 +163,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'valepython123@gmail.com'
 EMAIL_HOST_PASSWORD = 'Vale.123'
 EMAIL_USE_TLS = True
+

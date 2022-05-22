@@ -53,7 +53,7 @@
               </button>
         </div>
       </div>
-
+      {% if user.is_active%}
       <div id="form_ver_mensaje">
         <form action="/mensaje_mail/{{ request.user.email }}" >
           <button id="btn-3" class="btn btn-outline-dark" type="submit"/>Revisar Mensajes Anteriores</button>
@@ -61,7 +61,7 @@
 
         </form> 
       </div>
-    
+    {% endif %}
     </div>
   </div>  
 </div>

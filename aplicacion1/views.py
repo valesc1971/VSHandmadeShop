@@ -157,7 +157,8 @@ def editar_mensaje(request, id):  #formulario editar mensaje
 def eliminar_mensaje(request, id):
         mensaje=Mensaje.objects.get(pk=id)
         mensaje.delete()
-        return redirect('/mensaje_mail')
+        messages.info(request, 'eliminado correctamente')
+        return redirect('/mostrar_mensaje')
 
 def mensaje_mail(request,email):
     email_list = Mensaje.objects.filter(email=email)
@@ -188,6 +189,26 @@ def  ingreso_productos(request):  # ingreso de nuevos productos
 def producto_display(request):
     products=Producto.objects.all()
     return render (request,'aplicacion1/producto_display.html',{"products":products})
+
+def editar_producto(request, id):  #formulario editar mensaje
+        producto=Producto.objects.get(pk=id)
+        form = ProductoForm(instance=producto)
+        if request.method == "POST":
+            form=ProductoForm(data=request.POST, instance=producto,files=request.FILES)
+            producto=form.save (commit=False)
+            producto.save()
+            color=form.cleaned_data ['color']
+            for col in color:
+                producto.color.add(col)
+            return redirect('productos_lista')
+
+        else:
+            return render (request, 'aplicacion1/editar_producto.html',{"form":form})
+
+def eliminar_producto(request, id):
+        producto=Producto.objects.get(pk=id)
+        producto.delete()
+        return redirect('/productos_lista')
 
 def compra_producto(request, id):
         orden=Producto.objects.get(pk=id)
@@ -225,14 +246,12 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'aplicacion1/order_summary.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "No tiene ordenes pendientes")
             return redirect("/")
-
 
 class ItemDetailView(DetailView):
     model = Producto
     template_name = "aplicacion1/product.html"
-
 
 def add_to_cart(request, slug):
     item = get_object_or_404(Producto, slug=slug)
@@ -282,7 +301,7 @@ def remove_from_cart(request, slug):
             messages.info(request, "El producto ha sido eliminido de su orden.")
             return redirect("order_summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Este producto no estaba en tu carro")
             return redirect("product", slug=slug)
     else:
         messages.info(request, "No tienes una orden pendiente")
@@ -308,13 +327,13 @@ def remove_single_item_from_cart(request, slug):
                 order_item.save()
             else:
                 order.items.remove(order_item)
-            messages.info(request, "This item quantity was updated.")
+            messages.info(request, "Se actualizo la cantidad de este producto.")
             return redirect("order_summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Este producto no esta en tu carro")
             return redirect("product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "No tienes una orden pendiente")
         return redirect("product", slug=slug)
 
 class CheckoutView(View):
@@ -329,7 +348,7 @@ class CheckoutView(View):
         order.ordered=True
         order.ref_code = create_ref_code()
         order.save()
-        messages.success(self.request, "Your order was successful!")
+        messages.success(self.request, "Se ha procesado tu orden. Gracias!")
         return redirect("/")
 
 

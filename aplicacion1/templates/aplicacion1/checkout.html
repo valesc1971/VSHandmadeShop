@@ -1,39 +1,95 @@
 {%extends 'base_layout.html'%}{%block content%}
-
+{% load static %}
 
 <main >
   <div class="container wow fadeIn">
-    <h2 class="my-5 h2 text-center">Checkout form</h2>
+    <h2 class="my-5 h2 text-center">Termino de Compra</h2>
     <div class="row">
-      <div class="col-md-8 mb-4">
-        <div class="card">
-          <form method="POST" class="card-body">
-            {% csrf_token %}
-         
-
-
-
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-
-          </form>
-
+      <form method="POST" class="card-body">
+        {% csrf_token %}
+         <hr class="mb-4">
+        <button id="btn-5" class="btn btn-primary btn-lg btn-block" type="submit">Confirmar compra</button>
+      </form>
+      <div class=" container-fluid my-5 ">
+        <div class="row justify-content-center ">
+            <div class="col-xl-6">
+                <div class="card shadow-lg ">
+                    <div class="row p-2 mt-3 justify-content-between mx-sm-2">
+                        <div class="col">
+                            <p class="text-muted space mb-0 shop">VS - handmade shop&more</p>
+                            <p class="text-muted space mb-0 shop">numero de productos: {{ order.items.count }}</p>   
+                        </div>
+                        <div class="col">
+                            <div class="row justify-content-start ">
+                                <div class="col">
+                                  <img id="logo" src="{% static 'aplicacion1/images/logo.png'%}" class="img-fluid" alt="logo.png">
+                                </div>
+                            </div>
+                        </div>
+                
+                    <div class="row justify-content-around">
+                        <div class="col-md-9">
+                                    <h2 class="card-title space ">Resumen de tu orden</h2>
+                                    <hr class="my-0">
+    
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto mt-0"><p><b>{{ request.user.username }}</b></p></div>
+                                        <div class="col-auto"><p><b>{{ request.user.email }}</b> </p></div>
+                                    </div>
+    
+      
+                                </div>
+                            </div>
+                        </div>
+    
+                            <div class="card border-0 ">
+          
+                                <div class="card-body pt-0">
+                                    {% for order_item in order.items.all %}
+                                    <div class="row  justify-content-between">
+                                        <div class="col-auto col-md-4">
+                                            <div class="media flex-column flex-sm-row">
+                                                <img class=" img-fluid" src="{{ order_item.item.imagen.url }}" width="62" height="62">
+                                                <div class="media-body  my-auto">
+                                                    <div class="row ">
+                                                        <div class="col-auto"><p class="mb-0"><b>{{ order_item.item.nombre}}</b></p><small class="text-muted">{{ order_item.item.descripcion}}</small></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">{{ order_item.quantity }}</p></div>
+                                        <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>${{ order_item.item.precio | floatformat:"0"}}</b></p></div>
+                                    </div>
+                                    <hr class="my-2">
+                                    {% endfor %}
+    
+                                    <div class="row ">
+                                        <div class="col">
+                                               
+                                            <div class="row justify-content-between">
+                                                <div class="col-4"><p ><b>Total</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p  class="mb-1"><b>${{ order.get_total| floatformat:"0" }}</b></p> </div>
+                                            </div><hr class="my-0">
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+    
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-      </div>
 
-      <div class="col-md-4 mb-4">
+  <div class="col-md-8 mb-4">
+    <div class="card">
 
-      </div>
 
     </div>
 
   </div>
-
-  <div class="col-md-4 mb-4">
-    {% include "aplicacion1/order_snippet.html" %}
-  </div>
-
 </main>
 
 

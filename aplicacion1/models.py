@@ -49,7 +49,7 @@ class Producto(models.Model):
     clasificacion=models.ForeignKey(Clasificacion, null=True, on_delete=models.SET_NULL)
     codigo=models.OneToOneField(Codigo, blank=True, null=True, on_delete=models.SET_NULL)
     color= models.ManyToManyField(Color)
-    slug = models.SlugField()
+    slug = models.SlugField(help_text="identifica al producto: ej Prod1 ")
     
     def __str__(self):
         return self.nombre

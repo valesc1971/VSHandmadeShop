@@ -2,6 +2,30 @@
 
 
 <body >
+  <script>
+
+    function modal_eliminar(id) {
+      Swal.fire ({
+        title: 'estas seguro?',
+        text: "esta accion no se puede deshacer",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        showConfirmButton: true,
+        confirmButtonText: 'Si, borrar'
+     
+      })
+      .then (function(result) {
+          if (result.isConfirmed) {
+            window.location.href = "/eliminar_mensaje/"+id
+          }
+  
+      })
+      
+    }
+  
+  </script>
+
 <div id="tabla_usuarios">
 <header>
   <h1>Mensajes</h1> 
@@ -28,7 +52,11 @@
           <td>{{men.apellido}}</td>
           <td>{{men.email}}</td>
           <td>{{men.mensaje}}</td>
-          <td><a href="/eliminar_mensaje/{{men.id}}">eliminar</a> | <a href="/editar_mensaje/{{men.id}}">editar</a> | <a href="/mensaje_mail/{{men.email}}">filtrar for email</a></td>
+          <td>
+          <button id="btn-4"><a id="editar"href="/editar_mensaje/{{men.id}}">editar</a></button> 
+          <button id="btn-4"  href ='#' onclick="modal_eliminar({{men.id}})">eliminar</button>  
+          <button id="btn-4"><a id="editar" href="/mensaje_mail/{{men.email}}">filtrar for email</a></button>
+        </td>
         </tr>
         {% endfor %} 
       </tbody>

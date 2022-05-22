@@ -22,17 +22,17 @@
       <tr>
           <th scope="row">{{ forloop.counter }}</th>
           <td>{{ order_item.item.nombre }}</td>
-          <td>{{ order_item.item.precio }}</td>
+          <td>{{ order_item.item.precio |floatformat:"0" }}</td>
           <td>
-              <a href="{% url 'remove-single-item-from-cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
+              <a href="{% url 'remove-single-item-from-cart' order_item.item.slug %}"><i style='color: rgb(148, 145, 138)'class="fas fa-minus mr-2 fa-xs"></i></a>
               {{ order_item.quantity }}
-              <a href="{% url 'add-to-cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+              <a href="{% url 'add-to-cart' order_item.item.slug %}"><i style='color: rgb(148, 145, 138)' class="fas fa-plus ml-2 fa-xs"></i></a>
           </td>
           <td>
-              ${{ order_item.get_total_item_price }}
+              ${{ order_item.get_total_item_price | floatformat:"0" }}
 
-          <a style='color: red;' href="{% url 'remove-from-cart' order_item.item.slug %}">
-              <i class="fas fa-trash float-right"></i>
+          <a id="trash_can" style='color: rgb(148, 145, 138)' href="{% url 'remove-from-cart' order_item.item.slug %}">
+              <i class="fas fa-trash float-right fa-xs"></i>
           </a>
           </td>
       </tr>
@@ -49,13 +49,13 @@
      
       {% if object.get_total %}
       <tr>
-          <td colspan="4"><b>Order Total</b></td>
-          <td><b>${{ object.get_total }}</b></td>
+          <td colspan="4"><b>Total</b></td>
+          <td><b>${{ object.get_total | floatformat:"0"}}</b></td>
       </tr>
       <tr>
           <td colspan="5">
-          <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
-          <a class='btn btn-primary float-right' href="{% url 'producto_display' %}">Continue shopping</a>
+          <a id= "btn-5" class='btn btn-warning float-right ml-2' href='/checkout/'>Finalizar compra</a>
+          <a id= "btn-6"class='btn btn-primary float-right' href="{% url 'producto_display' %}">Seguir comprando</a>
           </td>
       </tr>
       {% endif %}

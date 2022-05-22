@@ -399,9 +399,11 @@ span{
 #nombre_login{
   color: white;
   text-align: center;
-  font-size: xx-large;
+  font-size: large;
+  margin-left: 20%;
 
 }
+
 
 #mensaje_alerta p{
   color: red;
@@ -488,6 +490,36 @@ margin-left: 40%;
   font-size: small;
 }
 
+#btn-5 {
+  background-color:  rgb(148, 145, 138);
+  color: #fff;
+  border-color: #fff;
+  font-size: small;
+}
+
+#btn-6 {
+
+  background-color:  rgb(148, 145, 138);
+  color: #fff;
+  border-color: #fff;
+  font-size: small;
+}
+
+#prod_det{
+  margin-left: 30%;
+}
+
+#trash_can{
+
+color:   rgb(148, 145, 138);
+
+}
+
+#editar
+{
+  color: #fff;
+  text-decoration: none
+}
 footer {
   background-color: rgb(148, 145, 138);
   color:#fff;

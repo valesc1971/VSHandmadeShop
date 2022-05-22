@@ -24,7 +24,7 @@ USUARIO: {{request.user.email}}
         <tr>
           <td>{{ forloop.counter }}</td>
           <td>{{item.product.nombre}}</td>
-          <td>{{item.product.precio}}</td>
+          <td>{{item.product.precio | floatformat:"0"}}</td>
        
         </tr>
         {% endfor %} 

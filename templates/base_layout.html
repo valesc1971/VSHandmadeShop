@@ -28,38 +28,47 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'index' %}" id="form-contact">Inicio</a>
 			</li>
+      
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'productos' %}" id="form-contact">Mis trabajos</a>
 			</li>
+ 
 
+      {% if user.is_active %}
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Comprar</a>
 			</li>
+      {% endif %}
 
 
-            {% if user.is_active%}
-			<li class="nav-item">
-                
-				<a class="nav-link" href="{% url 'contacto' %}" id="form-contact">Contacto</a>
-			</li>
-            {% endif %}
-
-           
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'formulario_usuario' %}" id="form-contact">Registro - Clientes</a>
-			</li>
-            <li class="nav-item">
-				<a class="nav-link" href="/register" id="form-contact">Registro - Usuarios</a>
+      <li class="nav-item">
+				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Productos</a>
 			</li>
 
             <li class="nav-item">
-				<a class="nav-link" href="/login" id="form-contact">Ingresar</a>
+				<a class="nav-link" href="{% url 'contacto' %}"  id="form-contact">Contacto</a>
 			</li>
-            {% if user.is_active%}
-            <li class="nav-item">
-				<a class="nav-link" href="/salir" id="form-contact">Salir</a>
-			</li>
-            {% endif %}
+
+
+      <div id="nav_admin" class="col-sm-2">
+
+            <li class="nav-item dropdown">
+              <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a id="form-contact_drop" class="dropdown-item"  href="{% url 'formulario_usuario' %}" >Inscripcion Club</a>
+                {% if user.is_active %}
+                <a id="form-contact_drop" class="dropdown-item" href="/compra_user/{{ request.user.id }}" >Revisar Ordenes Anteriores</a>
+                {% endif %}
+                <a id="form-contact_drop" class="dropdown-item" href="/register">Registro Usuarios</a>
+                <a id="form-contact_drop" class="dropdown-item" href="/login">Ingresar</a>
+                <a id="form-contact_drop" class="dropdown-item" href="/salir" >Salir</a>
+              </div>
+            </li>
+            
+          </div>
+          <div id="nav_menu" class="col-sm-2">
             {% if user.is_staff %}
             <li class="nav-item dropdown">
               <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,18 +81,21 @@
                 <a id="form-contact_drop" class="dropdown-item" href="{% url 'usuarios' %}">Revisar Lista Clientes</a>
               </div>
             </li>
+          </div>
             {% endif %}
-        <div id="nombre_login">
-           <p>{{ request.user.username }} </p>
-           {% if request.user.is_superuser %}
-                <h5> superuser </h5>
-           {% elif request.user.is_staff %}
-                <h5> staff </h5>
-            {% elif request.user.is_active %}
-                <h5> active </h5>
-           {% endif %}
-        </div>
-        
+        <div id="nombre_login" class="col-sm-2">
+
+        {% if user.is_active%}
+        <li class="nav-item">
+          <a href="/order_summary" class="nav-link waves-effect">
+            <span class="badge red z-depth-1 mr-1"> {{ request.user.username }} <br> {{ request.user.email }}</span>
+            <i style='color: white'class="fas fa-shopping-cart"></i>
+            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+          </a>
+        </li>
+        {% endif %}
+      </div>
+
 	</div>
 
 </nav>
@@ -104,19 +116,18 @@
         </div>
       </div>
       <div class="col-sm">
-          {% if user.is_active %}
-        <div id="form_ver_orden">
-            <form action="/compra_user/{{ request.user.id }}" >
-              <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Revisar ordenes Anteriores</button>
-              <p>{{ request.user.email }} </p>
-        
-            </form> 
-            <form action="/order_summary" >
-                <button id="btn-4" class="btn btn-outline-dark" type="submit"/>Ver Carrito de Compras</button>
-          
-              </form> 
-            {% endif %}
-          </div
+
+        <div id="nombre_login" class="col-sm-2">
+          <p>{{ request.user.username }} </p>
+          {% if request.user.is_superuser %}
+               <h5> superuser </h5>
+          {% elif request.user.is_staff %}
+               <h5> staff </h5>
+           {% elif request.user.is_active %}
+               <h5> active </h5>
+          {% endif %}
+       </div>
+
       </div>
     </div>
   </div>

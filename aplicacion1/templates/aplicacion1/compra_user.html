@@ -23,11 +23,13 @@
      
       
       <tbody>
-        <p>{{ request.user.email }} </p>
-        <p>{{ request.user.username }} </p>
+        <p>usuario: {{ request.user.email }} </p>
+        <p>email: {{ request.user.username }} </p>
         {% for compra in compra_user %}
         <tr>
           <td>{{compra.ref_code}}</td>
+
+
           <td>{{compra.ordered_date}}</td>
         <td>{% for prod in compra.items.all %}
           {{prod.item.nombre}} 
@@ -40,11 +42,11 @@
         {% endfor %}</td>
 
         <td>{% for prod in compra.items.all %}
-          {{prod.item.precio}} 
+          {{prod.item.precio | floatformat:"0"}} 
           <br>
         {% endfor %}</td>
-        <td>
-
+    
+        <td>{{ compra.get_total| floatformat:"0" }}</td>
         </tr>
         {% endfor %} 
       </tbody>
