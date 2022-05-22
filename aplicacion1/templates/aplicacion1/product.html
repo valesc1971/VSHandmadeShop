@@ -4,15 +4,15 @@
   
     <div class="container dark-grey-text mt-5">
       <div class="row wow fadeIn">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-4">
           <img src='{{ object.imagen.url }}'></img>
         </div>
         <div class="col-md-6 mb-4">
           <div class="p-4">
-            <p style="font-size:25px;"><strong>{{ object.nombre }}</strong></p>            
-            <p>{{ object.descripcion }}</p>
-            <p>${{ object.precio | floatformat:"0" }}</p>
-
+            <p style="font-size:25px; color: rgb(92, 86, 76)"><strong>{{ object.nombre }}</strong></p>            
+            <p style="color: rgb(92, 86, 76)">{{ object.descripcion }}</p>
+            <p style="color: rgb(92, 86, 76)">${{ object.precio | floatformat:"0" }}</p>
+            {% if user.is_active %}
             <a id="btn-5" href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
               Agregar
               <i class="fas fa-shopping-cart ml-1"></i>
@@ -20,7 +20,7 @@
             <a id="btn-5" href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
               Eliminar
             </a>
-
+          {% endif %}
           </div>
         </div>
       </div>

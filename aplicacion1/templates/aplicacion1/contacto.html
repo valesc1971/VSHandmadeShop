@@ -10,7 +10,7 @@
 {% load crispy_forms_tags %}
 <div class="container">
   <div class="row">
-    <div class="col-9">
+    <div class="col-8">
       <form id="form_contacto" action= "/contacto/" method= "POST" class="form-1" name="miFormu" >  
         {% csrf_token %}
         
@@ -22,48 +22,51 @@
               <div class="col-6">
                 {{ form.apellido|as_crispy_field }}
               </div>
-            </div>
+          </div>
             {{ form.email|as_crispy_field }}
             {{ form.mensaje|as_crispy_field }}
         </div>
-           
-        <button id="btn-1" type="submit" class="btn btn-outline-dark">Enviar Mensaje</button>
+          
+        <button id="btn-1" type="submit" class="btn btn-outline-dark">Enviar</button>
       
       </form>
     </div>
 
 
-    <div id ='info_contacto'class="col">
-      
-      <div id ='info_direccion'>
-        <p> Direccion: Juan XXIII 5048
-        <br>
-          Olmue</p>
-        <p> Telefono: +56 9123456</p>
-      </div>
-      
-      <div id ='info_mapa'> 
-        <div id="mapaCol" class="col-sm-6 col-xs text-center">
 
-              <button id="btn-3" id="botonMapa" data-fancybox="video-gallery"
-                  data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.4984566491985!2d-71.18725328510692!3d-32.990631681445656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96882b363edf3781%3A0x53952958029fcda6!2sJuan%20XXIII%205048%2C%20Olmu%C3%A9%2C%20Valpara%C3%ADso!5e0!3m2!1sen!2scl!4v1652465036989!5m2!1sen!2scl" 
-                  className="button button--secondary" data-fancybox data-type="iframe" data-preload="false"
-                  data-width="640" data-height="480">
-                  Ver Mapa
-              </button>
-        </div>
+      <div class="col-4">
+
+        <div id ='info_contacto'class="col">
+          <div id ='info_direccion'>
+            <p> Direccion: Juan XXIII 5048
+            <br>
+              Olmue</p>
+            <p> Telefono: +56 9123456</p>
+          </div>
+          <div id ='info_mapa'> 
+            <div id="mapaCol" class="col-sm-6 col-xs text-center">
+              <button id="btn-8" id="botonMapa" data-fancybox="video-gallery"
+                      data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.4984566491985!2d-71.18725328510692!3d-32.990631681445656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96882b363edf3781%3A0x53952958029fcda6!2sJuan%20XXIII%205048%2C%20Olmu%C3%A9%2C%20Valpara%C3%ADso!5e0!3m2!1sen!2scl!4v1652465036989!5m2!1sen!2scl" 
+                      className="button button--secondary" data-fancybox data-type="iframe" data-preload="false"
+                      data-width="640" data-height="480">
+                      Ver Mapa
+                </button>
+            </div>
+         </div>
       </div>
+
+      <div id="mens_ant">
       {% if user.is_active%}
       <div id="form_ver_mensaje">
         <form action="/mensaje_mail/{{ request.user.email }}" >
-          <button id="btn-3" class="btn btn-outline-dark" type="submit"/>Revisar Mensajes Anteriores</button>
-          <p>{{ request.user.email }} </p>
-
+          <button id="btn-7" class="btn btn-outline-dark" type="submit"/>Mensajes Anteriores</button>
         </form> 
       </div>
     {% endif %}
     </div>
-  </div>  
+    </div>
+
+ 
 </div>
 
   {%endblock content%}

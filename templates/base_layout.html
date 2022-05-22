@@ -34,13 +34,6 @@
 			</li>
  
 
-      {% if user.is_active %}
-            <li class="nav-item">
-				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Comprar</a>
-			</li>
-      {% endif %}
-
-
       <li class="nav-item">
 				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Productos</a>
 			</li>
@@ -116,6 +109,8 @@
         </div>
       </div>
       <div class="col-sm">
+
+        
 
         <div id="nombre_login" class="col-sm-2">
           <p>{{ request.user.username }} </p>

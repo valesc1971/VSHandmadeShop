@@ -18,11 +18,13 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.http import HttpResponse
 from .backend import MyBackend
 
 from .models import  Usuario, Mensaje, Producto, Orden, Order, OrderItem
 from .forms import EmailForm, UsuarioForm, LoginForm, MensajeForm,  UserRegisterForm, ProductoForm, OrdenForm, CheckoutForm
+
+import xlwt
 
 MyBackend=MyBackend()
 
@@ -351,5 +353,28 @@ class CheckoutView(View):
         messages.success(self.request, "Se ha procesado tu orden. Gracias!")
         return redirect("/")
 
+def export_excel (request):
+    response= HttpResponse(content_type='application/vnd.ms-excel')
+    response['Content_Disposition'] = 'attachment; filename=Listado.xlsx'
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('ListadoProductos')
+    
+    row_num = 0 
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+    
+    columns = ['Nombre', 'Descripcion', 'Precio']
+    for col_num in range (len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+    font_style = xlwt.XFStyle()
+
+    rows=Producto.objects.all().values_list('nombre', 'descripcion', 'precio')
+    for row in rows:
+        row_num+=1
+        for col_num in range (len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style )
+    
+    wb.save(response)
+    return response
 
 
