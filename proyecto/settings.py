@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-fdi-@d5aj25i^lzaeezx%d5sbvm0y3+av=0-x(eh*e%zj%!y7h
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['vshandmadeshop.herokuapp.com']  
+ALLOWED_HOSTS = ['vshandmadeshop.herokuapp.com', '127.0.0.1']  
 
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1']
