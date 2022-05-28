@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from telnetlib import AUTHENTICATION
+import dj_database_url
 
 
 
@@ -178,3 +179,5 @@ EDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
