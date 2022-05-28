@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 from telnetlib import AUTHENTICATION
 import dj_database_url
+import cloudinary
+import cloudinary_storage
 
 
 
@@ -49,6 +51,8 @@ INSTALLED_APPS = [
     'fancybox',
     'localflavor',
     'calculation',
+    'cloudinary',
+    'cloudinary_storage',
     'aplicacion1',
 ]
 
@@ -149,6 +153,14 @@ STATICFILES_DIRS = (
  )   
 
 #STATICFILES_DIRS=[os.path.join(BASE_DIR,"static"), "templates"]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'denmokmpq',
+    'API_KEY': '744112267643298',
+    'API_SECRET': 'JNCwc6hhK2l50JbfkXZGqsRTQxk',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
