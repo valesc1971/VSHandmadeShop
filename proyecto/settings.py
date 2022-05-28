@@ -174,3 +174,7 @@ EMAIL_HOST_USER = 'valepython123@gmail.com'
 EMAIL_HOST_PASSWORD = 'Vale.123'
 EMAIL_USE_TLS = True
 
+EDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
