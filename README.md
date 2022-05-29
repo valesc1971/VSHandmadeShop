@@ -1,16 +1,13 @@
-# Proyecto Individual - VS - Handmade Shop & More
+VS - Handmade Shop & More
 
-Este proyecto consiste en el desarrollo de un sitio web para un negocio independiente
-
-El objetivo de este sitio es presentar la empresa y sus productos / servicios, permitir la interacción con clientes (compras y mensajes / comentario) y la administración de este (datos usuarios, productos, compras)
-
+Este proyecto consiste en el desarrollo de una aplicacion para un negocio independiente, tanto para la presentacion y venta de sus productos.
 
 ## Tabla de Contenidos
 
 * [Tecnologias Usadas](#Tecnologias)
 * [Instalacion](#Instalacion)
 * [Consideraciones](#Consideraciones)
-* [Funcionalidad](#Funcionalidad)
+* [Funcionalidad y Visualizacion](#Funcionalidad y Visualizacion)
 
 <a name="Tecnologias"></a>
 ## Tecnologias
@@ -28,55 +25,77 @@ Este proyecto fue creado usando:
 * FancyBox (http://fancybox.net/)
 * SweetAlert plugin (https://sweetalert.js.org/)
 * FontAwsome (https://fontawesome.com/)
+* Cloudinary (https://cloudinary.com/)
 
 <a name="Instalacion"></a>
 ## Instalacion
 Para descargar este proyecto, se debe clonar desde este repositorio remoto a un repositorio local.
 
-$git clone https://github.com/valesc1971/ProyectoIndividual.git
+$git clone https://github.com/valesc1971/VSHandmadeShop.git
 
 Se debe tambien correr dentro de un entorno virtual de Python (virtualenv) (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
 Las librerías instaladas se encuentran en el archivo requirements.txt
 
-
 <a name="Consideraciones"></a>
 ## Consideraciones
 
-Para el desarrollo del código de frontend, se utilizó HTML como herramienta principal. Para el formato, se utilizandó CSS y las herramientas JavaScript, JQuery, Boostrap y DataTable, Fancybox las que son llamadas usando CDNs.
+Para el desarrollo del código de frontend, se utilizó HTML como herramienta principal. Para el formato, se utilizó CSS y las herramientas JavaScript, JQuery, Boostrap y DataTable, Fancybox las que son llamadas usando CDNs.
 
 Los archivos de HTML se encuentran en una carpeta dentro de la aplicacion (aplicacion1/templates)
- ![image](https://user-images.githubusercontent.com/99301347/169719544-42b98166-ce87-45ae-8b84-ae3bb9dc1a82.png)
+ 
+Se creo una plantilla de html (proyecto/templates/base_layout.html) que contiene el logo de la tienda, la barra de navegacion , el footer y mensajes de alerta, incluyendo tambien los archivos y CDNs para las herramientas de diseño. Esta plantilla se llama dentro de los archivos HTML principales
 
- 
-Se creo una plantilla de html (proyecto/templates/base_layout.html) que contiene el logo de la tienda, la barra de navegacion , el footer y mensajes de alerta de tal forma de usar el principio de diseño DRY. De esta forma, se usa el concepto de “block content” para llamar a este template dentro de los archivos HTML principales. Este template también incluye los archivos y CDNs para las herramientas de diseño.
-  
- ![image](https://user-images.githubusercontent.com/99301347/169719549-e47f3ed5-5bdd-4483-8de9-beeb917548b1.png)
- ![image](https://user-images.githubusercontent.com/99301347/169719553-07f4b4e0-de4e-4602-8969-aa7dab9a83f9.png)
-![image](https://user-images.githubusercontent.com/99301347/169719556-f9fc79b5-9409-43c5-a911-a16e4fe57a9b.png)
-![image](https://user-images.githubusercontent.com/99301347/169719559-7d61d699-893a-45fe-a5ad-6e91cec20ecb.png)
- 
 Los archivos de imagenes, CSS y JS se encuentran dentro de un directorio static (aplicacion1/static)
 
-![image](https://user-images.githubusercontent.com/99301347/169719568-3dc04c13-3981-4d21-8aef-67d77b6a758e.png)
- 
+El desarrollo del codigo de backend se hizo usando la framework django en conjunto con python.
+
+<a name="Funcionalidad y Visualizacion"></a>
+## Funcionalidad y Visualizacion
+
 Se puede navegar a través del sitio usando las opciones que entrega la barra de navegación. Estas opciones tienes visibilidad de acuerdo al tipo de usuario que ha ingresado.
 
-En caso de no haber ingresado como usuario de la aplicacion, se despliegan también opciones reducidas de la barra de navegación.
-Los links incluidos en la barra de navegacion son los siguientes:
+En caso ingresado a la aplicacion como visitante sin haber hecho login, se despliegan también opciones reducidas de la barra de navegación, de tal forma que el visitante pueda interactuar, visualizar los productos, enviar mensajes de contacto y registrase como usuario.
 
-•	Inicio, Mis trabajos y Productos: presentacion de la tienda y productos. Una vez ingresado el usuario, desde la opción “productos” puede tambien comenzar a comprar
+Los links incluidos en la barra de navegacion para un usuario que no ha ingresado, son los siguientes:
+
+•	Inicio
+![image](https://user-images.githubusercontent.com/99301347/170878320-bb02ca7d-b093-4e30-8338-44c555d60697.png)
+
+
+•	Mis trabajos: presentacion de la tienda y ejemplo de productos
+![image](https://user-images.githubusercontent.com/99301347/170878346-ac087829-051d-4336-b314-aa00cd178c49.png)
+
+
+•	Productos:  galeria de productos. Si se hace clic en Ver, se despliega el producto en forma individual aumentado.
+![image](https://user-images.githubusercontent.com/99301347/170878373-14f0fa9c-f1ce-408d-9882-cffe78857519.png)
+
 •	Contacto: formulario para enviar mensaje. Una vez enviado un mensaje, el usuario recibe un mail de agradecimiento/informativo
-•	Menu: Este menú permite el acceso a registro de visitantes (Inscripcion Club), Revisar ordenes de compra anteriores, Registro de usuarios, Ingresar y Salir
- 
- ![image](https://user-images.githubusercontent.com/99301347/169719575-3873548c-e0ba-4524-98c3-16e504ebfe14.png)
- 
+![image](https://user-images.githubusercontent.com/99301347/170878409-036613f2-51ae-46fc-a3a0-7f29546ccb08.png)
+
+•	Menu: Este menú permite el acceso a registro de visitantes (Inscripcion Club),  Registro de usuarios, Ingresar y Salir
+
+![image](https://user-images.githubusercontent.com/99301347/170877963-34ee3c50-e995-41f3-864f-8f128cb44ce7.png)
+
+En el caso de que el usuario ingrese como usuario activo (cliente), la opcion Productos entrega la opcion de comprar tambien. Si se agrega el producto a la compra, se despliega una pagian donde se presenta el resumen de la compra con la posibilidad de agregar mas producto, cambiar la cantidad del producto, elminar productos y finalizar la compra
+
+![image](https://user-images.githubusercontent.com/99301347/170878631-89ee1db0-4abd-46e3-b67a-ce2cd617a45a.png)
+Si se finaliza la compra, se ingresa a una opcion donde se despliega nuevamente el resumen, con la opcion de confirmar la compra. Si se confirma la compra, se recibe una confirmacion por pantalla.
+
+![image](https://user-images.githubusercontent.com/99301347/170878732-cf6d2f77-6776-4c14-8b11-69fcce52cc1d.png)
+
+El cliente puede revisar las ordenes anteriores, en la opcion dentro de Menu "Revisar ordenes anteriores"
+
+![image](https://user-images.githubusercontent.com/99301347/170878868-b9217c03-d4b6-4644-923f-9728ef947948.png)
+
+
+
 •	Admin: Este menú permite el acceso a opciones de usuarios “Staff” o “Superusuarios”. Las opciones que entrega permiten ingresar nuevos productos, ver la lista de productos, revisar mensajes recibidos de visitantes, y revisar la lista de clientes registrados
  
 ![image](https://user-images.githubusercontent.com/99301347/169719579-e5fac681-c990-4ff7-b81f-10c2fd66a2f5.png)
 
-El desarrollo del codigo de backend se hizo usando la framework django en conjunto con python.
 
+*********************************************
 Existe un Superusuario creado y se agregó la opción de registro de nuevos usuarios a través del sitio con la opción "Registro Usuarios" en la barra de navegación. Esta opcion permite registrar usuarios del tipo “Active”. Para darle permisos de usuarios “Staff2 o “Superusuario” se debe hacer desde Admin
 
 El sitio también permite el ingreso de usuarios ya registrados a través de la opción "Ingresar". Una vez que el usuario ingresa, se despliega un mensaje de bienvenida personalizado, y el nombre aparece en la esquina superior derecha con el tipo de usuario registrado.
@@ -140,8 +159,7 @@ Para visualizarla, se debe hacer los siguientes cambios en el archivo setting.py
 
  ![image](https://user-images.githubusercontent.com/99301347/169719664-123a21bf-d8e8-4010-bf07-12746ae20b83.png)
 
-<a name="Funcionalidad"></a>
-## Funcionalidad
+
 
 Si un usuario visita el sitio y no ingresa, puede enviar un formulario de contacto, registrarse en el club (ingreso solo de datos) o registrarse como usuario. Esta opción lo registra como usuario “Active”.
 
