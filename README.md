@@ -1,6 +1,8 @@
 # VS - Handmade Shop & More
 
 Este proyecto consiste en el desarrollo de una aplicacion para un negocio independiente, tanto para la presentacion y venta de sus productos.
+Para ver esta aplicacion en produccion, hacer click en el siguiente link
+https://vshandmadeshop.herokuapp.com/
 
 ## Tabla de Contenidos
 
@@ -29,13 +31,41 @@ Este proyecto fue creado usando:
 
 <a name="Instalacion"></a>
 ## Instalacion
+
+**Clonar repositorio desde Github**
+
 Para descargar este proyecto, se debe clonar desde este repositorio remoto a un repositorio local.
 
-$git clone https://github.com/valesc1971/VSHandmadeShop.git
+1. Abrir GitBash
+2. Ubicarse en el directorio de la ubicacion donde se quiere clonar la aplicacion
+3. Escribir   $git clone https://github.com/valesc1971/VSHandmadeShop.git
+4. Hacer Enter para clonar el repositorio 
+
+**Crear entorno virtual**
 
 Se debe tambien correr dentro de un entorno virtual de Python (virtualenv) (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
-Las librerías instaladas se encuentran en el archivo requirements.txt
+1. Instalar pip
+py -m pip install --upgrade pip
+py -m pip --version
+
+2. Instalar virtualenv
+py -m pip install --user virtualenv
+
+3. Crear el entorno virtual
+py -m venv env
+
+4. Activar el entorno virtual 
+.\env\Scripts\activate
+
+5. Salir del entorno virtual
+deactivate
+
+**Instalar librerias adicionales**
+Las librerías instaladas se encuentran en el archivo requirements.txt. Para instalar, se debe hacer lo siguientes
+
+$ pip install -r requirements.txt
+
 
 <a name="Consideraciones"></a>
 ## Consideraciones
@@ -80,7 +110,7 @@ Los links incluidos en la barra de navegacion para un usuario que no ha ingresad
 En el caso de que el usuario ingrese como usuario activo (cliente), la opcion Productos entrega la opcion de comprar tambien. Si se agrega el producto a la compra, se despliega una pagian donde se presenta el resumen de la compra con la posibilidad de agregar mas producto, cambiar la cantidad del producto, elminar productos y finalizar la compra
 
 ![image](https://user-images.githubusercontent.com/99301347/170878631-89ee1db0-4abd-46e3-b67a-ce2cd617a45a.png)
-Si se finaliza la compra, se ingresa a una opcion donde se despliega nuevamente el resumen, con la opcion de confirmar la compra. Si se confirma la compra, se recibe una confirmacion por pantalla.
+Si se finaliza la compra, se ingresa a una opcion donde se despliega nuevamente el resumen, con la opcion de confirmar la compra. Si se confirma la compra, se recibe una confirmacion por pantalla y un mail de confirmacion con el numero de la orden de compra
 
 ![image](https://user-images.githubusercontent.com/99301347/170878732-cf6d2f77-6776-4c14-8b11-69fcce52cc1d.png)
 
