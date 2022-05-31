@@ -351,6 +351,12 @@ class CheckoutView(View):
         order.ref_code = create_ref_code()
         order.save()
         messages.success(self.request, "Se ha procesado tu orden. Gracias!")
+        #html_content=render_to_string('aplicacion1/email_template.html')
+        text_content =f'{order.user.email} tu numero de orden es:  {order.ref_code}'
+        to_email = str(order.user.email)
+        msg = EmailMultiAlternatives('Gracias por tu compra',text_content, 'valepython123@gmail.com',[to_email,])
+        #msg.attach_alternative(html_content, "text/html")
+        msg.send()
         return redirect("/")
 
 def export_excel (request):
