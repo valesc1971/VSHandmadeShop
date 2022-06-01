@@ -22,8 +22,27 @@
 	
     <div class="container-fluid justify-content-center" id="barranav">
         
-
+    
 		<ul class="navbar-nav mb-2 mb-lg-0">
+
+      <div>
+
+        <li class="nav-item dropdown">
+          <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a id="form-contact_drop" class="dropdown-item"  href="{% url 'formulario_usuario' %}" >Inscripcion Club</a>
+            {% if user.is_active %}
+            <a id="form-contact_drop" class="dropdown-item" href="/compra_user/{{ request.user.id }}" >Revisar Ordenes Anteriores</a>
+            {% endif %}
+            <a id="form-contact_drop" class="dropdown-item" href="/register">Registro Usuarios</a>
+            <a id="form-contact_drop" class="dropdown-item" href="/login">Ingresar</a>
+            <a id="form-contact_drop" class="dropdown-item" href="/salir" >Salir</a>
+          </div>
+        </li>
+        
+      </div>
 
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'index' %}" id="form-contact">Inicio</a>
@@ -33,35 +52,24 @@
 				<a class="nav-link" href="{% url 'productos' %}" id="form-contact">Mis trabajos</a>
 			</li>
  
-
+      {% if user.is_active %}
+      <li class="nav-item">
+				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Comprar</a>
+			</li>
+      {% else %}
+      
       <li class="nav-item">
 				<a class="nav-link" href="{% url 'producto_display' %}" id="form-contact">Productos</a>
 			</li>
-
+      {% endif %}
             <li class="nav-item">
 				<a class="nav-link" href="{% url 'contacto' %}"  id="form-contact">Contacto</a>
 			</li>
 
+      
 
-      <div id="nav_admin" class="col-sm-2">
-
-            <li class="nav-item dropdown">
-              <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Menu
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a id="form-contact_drop" class="dropdown-item"  href="{% url 'formulario_usuario' %}" >Inscripcion Club</a>
-                {% if user.is_active %}
-                <a id="form-contact_drop" class="dropdown-item" href="/compra_user/{{ request.user.id }}" >Revisar Ordenes Anteriores</a>
-                {% endif %}
-                <a id="form-contact_drop" class="dropdown-item" href="/register">Registro Usuarios</a>
-                <a id="form-contact_drop" class="dropdown-item" href="/login">Ingresar</a>
-                <a id="form-contact_drop" class="dropdown-item" href="/salir" >Salir</a>
-              </div>
-            </li>
-            
-          </div>
-          <div id="nav_menu" class="col-sm-2">
+      
+          <div >
             {% if user.is_staff %}
             <li class="nav-item dropdown">
               <a id="form-contact" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,18 +84,7 @@
             </li>
           </div>
             {% endif %}
-        <div id="nombre_login" class="col-sm-2">
 
-        {% if user.is_active%}
-        <li class="nav-item">
-          <a href="/order_summary" class="nav-link waves-effect">
-            <span class="badge red z-depth-1 mr-1"> {{ request.user.username }} <br> {{ request.user.email }}</span>
-            <i style='color: white'class="fas fa-shopping-cart"></i>
-            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-          </a>
-        </li>
-        {% endif %}
-      </div>
 
 	</div>
 
@@ -108,9 +105,10 @@
             <img id="logo" src="{% static 'aplicacion1/images/logo.png'%}" class="img-fluid" alt="logo.png">
         </div>
       </div>
-      <div class="col-sm">
 
-        
+    
+      <div id="carrito" class="col-sm">
+        <!--
 
         <div id="nombre_login" class="col-sm-2">
           <p>{{ request.user.username }} </p>
@@ -122,8 +120,20 @@
                <h5> active </h5>
           {% endif %}
        </div>
+    -->
+
+
+
+      {% if user.is_active%}
+        <a style='text-align: right'href="/order_summary" class="nav-link waves-effect">
+          <span style='color: grey' class="badge red z-depth-1 mr-1"> {{ request.user.username }} </span>
+          <i style='color: grey'class="fas fa-shopping-cart"></i>
+        </a>
+      {% endif %}
 
       </div>
+
+
     </div>
   </div>
 
